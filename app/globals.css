@@ -3,6 +3,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-meila: 'Meila Demo', sans-serif;
+  --font-unbounded: 'Unbounded', sans-serif;
+  --color-coral: #fc98a4;
+  --color-bright-yellow: #fef9c2;
+  --color-yellow: #fbf3de;
+  --color-caramel: #cd7b4f;
+  --color-brown: #5a3e2b;
+  --color-light-green: #c8e8b7;
+  --color-dark-green: #10c3a5;
+  --color-cyan: #cefffa;
+  --color-peachy: #ffe2ef;
+  --color-pastel-pink: #fdc7d5;
+  --color-barbie-pink: #ff31ba;
+}
+
 :root {
   --color-coral: #fc98a4;
   --color-bright-yellow: #fef9c2;

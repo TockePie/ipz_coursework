@@ -1,26 +1,18 @@
-import React, { FC } from 'react'
+import React, { SVGProps } from 'react'
 
-interface RabbitIconProps {
-  width?: number | string
-  height?: number | string
-  className?: string
-  color?: string
-  [key: string]: any
-}
-
-const RabbitIcon: FC<RabbitIconProps> = ({
+const RabbitIcon = ({
   width = '57',
   height = '100',
   className = '',
   color = '#DB65A1',
   ...props
-}) => (
+}: SVGProps<SVGSVGElement>) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width={width}
     height={height}
     viewBox="0 0 57 100"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     className={className}
     {...props}
   >

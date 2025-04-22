@@ -8,15 +8,19 @@
   --font-meila: 'Meila Demo', sans-serif;
   --font-unbounded: 'Unbounded', sans-serif;
 
-  --color-cornsilk: hsl(51, 100%, 94%);
   --color-mistyrose: hsl(347, 100%, 94%);
   --color-coral: hsl(353, 95%, 70%);
   --color-light-coral: hsl(353, 94%, 79%);
   --color-light-coral-hovered: hsl(353, 94%, 94%);
+  --color-cornsilk: hsl(51, 100%, 94%);
+  --color-brown: hsl(29, 35%, 26%);
+  --color-light-goldenrod-yellow: hsl(99, 100%, 91%);
+  --color-pale-turquoise: hsl(170, 100%, 89%);
+  --color-strong-cyan: hsl(170, 85%, 41%);
 
   --color-bright-yellow: #fef9c2;
   --color-caramel: #cd7b4f;
-  --color-brown: #5a3e2b;
+  /* --color-brown: #5a3e2b; */
   --color-light-green: #c8e8b7;
   --color-dark-green: #10c3a5;
   --color-cyan: #cefffa;
@@ -27,7 +31,15 @@
 
 @layer base {
   h1 {
-    @apply font-unbounded text-8xl font-black;
+    @apply font-unbounded text-brown text-3xl font-bold;
+  }
+
+  h2 {
+    @apply font-unbounded text-brown text-xl font-medium;
+  }
+
+  h3 {
+    @apply font-unbounded text-brown text-lg font-medium;
   }
 }
 

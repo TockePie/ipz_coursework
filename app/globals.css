@@ -3,6 +3,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 /* Custom CSS */
 @theme {
   --font-meila: 'Meila Demo', sans-serif;
@@ -40,6 +52,10 @@
 
   h3 {
     @apply font-unbounded text-brown text-lg font-medium;
+  }
+
+  h5 {
+    @apply font-unbounded text-brown text-sm font-light;
   }
 }
 

@@ -10,8 +10,16 @@ const Home = () => {
     <main className="bg-cornsilk flex min-h-screen flex-col items-center gap-y-6 p-6">
       <Banner />
 
-      <BlockSection title="Меню" className="flex flex-col gap-4">
-        <PagesLink />
+      <BlockSection title="Меню">
+        <div className="flex w-full flex-col gap-4 lg:hidden">
+          <PagesLink />
+        </div>
+        <div className="hidden flex-col gap-4 lg:flex">
+          <p className="text-center">
+            У нас ви знайдете широкий вибір страв, які задовольнять будь-які
+            смаки. Від свіжих салатів до смачних десертів - у нас є все!
+          </p>
+        </div>
       </BlockSection>
 
       <BlockSection title="Бронювання" className="flex flex-col gap-4">

@@ -1,43 +1,25 @@
-import React, { FC } from 'react'
+import React from 'react'
+import { Controller, useFormContext, useWatch } from 'react-hook-form'
 
 import { FormValues } from '../form-values'
 
-const TIMES = [
-  {
-    id: 1,
-    time: '10:00'
-  },
-  {
-    id: 2,
-    time: '11:00'
-  },
-  {
-    id: 3,
-    time: '12:00'
-  },
-  {
-    id: 4,
-    time: '13:00'
-  },
-  {
-    id: 5,
-    time: '14:00'
-  }
-]
+import RenderComp from './render'
 
-const PickTime: FC<{
-  date: FormValues['date']
-}> = ({ date }) => {
-  if (date) {
-    return (
-      <div className="flex flex-col items-center justify-center">
-        <h3 className="mb-2">Оберіть час</h3>
-        <div className="bg-coral rounded-3xl p-3"></div>
-      </div>
-    )
-  }
+const PickTime = () => {
+  const { control } = useFormContext<FormValues>()
+  const date = useWatch({
+    control,
+    name: 'date'
+  })
 
-  return null
+  if (!date) return null
+
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <h3 className="mb-4">Оберіть час</h3>
+      <Controller control={control} name="time" render={RenderComp} />
+    </div>
+  )
 }
 
 export default PickTime

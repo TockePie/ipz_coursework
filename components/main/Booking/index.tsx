@@ -1,31 +1,46 @@
 'use client'
 
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 
+import ChooseTable from './ChooseTable'
 import { FormValues } from './form-values'
 import PickDay from './PickDay'
 import PickTime from './PickTime'
 
 const Booking = () => {
-  const { control, handleSubmit, watch } = useForm<FormValues>({
+  const methods = useForm<FormValues>({
     defaultValues: {
-      date: undefined
+      date: undefined,
+      time: undefined,
+      people: 1,
+      table: undefined
     }
   })
-
-  const date = watch('date')
-  console.log(date)
+  const { handleSubmit, watch } = methods
 
   const onSubmit = async (data) => {
     console.log(data)
   }
 
+  const date = watch('date')
+  const time = watch('time')
+  const people = watch('people')
+
+  console.log({
+    date,
+    time,
+    people
+  })
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-      <PickDay control={control} />
-      <PickTime date={date} />
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        <PickDay />
+        <PickTime />
+        <ChooseTable />
+      </form>
+    </FormProvider>
   )
 }
 

@@ -4,7 +4,6 @@ import Colors from '@/types/enums/colors'
 
 interface DiscordIconProps extends SVGProps<SVGSVGElement> {
   size?: string | number
-  className?: string
   outerColor?: Colors
   innerColor?: Colors
 }

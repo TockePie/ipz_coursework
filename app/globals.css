@@ -54,6 +54,10 @@ input[type='number'] {
     @apply font-unbounded text-brown text-lg font-medium;
   }
 
+  h4 {
+    @apply font-unbounded text-brown text-base font-light;
+  }
+
   h5 {
     @apply font-unbounded text-brown text-sm font-light;
   }

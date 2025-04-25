@@ -1,5 +1,6 @@
 import React from 'react'
 
+import AboutUs from '@/components/main/AboutUs'
 import Banner from '@/components/main/Banner'
 import BlockSection from '@/components/main/BlockSection'
 import Booking from '@/components/main/Booking'
@@ -22,8 +23,12 @@ const Home = () => {
         </div>
       </BlockSection>
 
-      <BlockSection title="Бронювання" className="flex flex-col gap-4">
+      <BlockSection title="Бронювання">
         <Booking />
+      </BlockSection>
+
+      <BlockSection title="Про нас">
+        <AboutUs />
       </BlockSection>
     </main>
   )

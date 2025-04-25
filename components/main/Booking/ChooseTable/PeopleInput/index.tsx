@@ -32,7 +32,7 @@ const PeopleInput = () => {
   }
 
   return (
-    <div className="mt-4 flex items-center justify-center gap-4">
+    <div className="flex items-center justify-center gap-4">
       <Button
         size="icon"
         className="bg-light-coral border-brown h-14 w-14 rounded-full border shadow-none"

@@ -3,17 +3,26 @@ import GmailIcon from '@/components/Icons/gmail-icon'
 import TelegramIcon from '@/components/Icons/telegram-icon'
 
 const LINKS = [
-  { name: 'меню', link: '/menu' },
-  { name: 'мерч', link: '/menu/merch' },
-  { name: 'про нас', link: '/about' },
-  { name: 'бронювання', link: '/booking' },
-  { name: 'buymecoffee', link: 'https://buymecoffee.com/bunnfee' }
+  { label: 'меню', href: '/menu' },
+  { label: 'мерч', href: '/menu/merch' },
+  { label: 'про нас', href: '/#about' },
+  { label: 'бронювання', href: '/#booking' },
+  { label: 'buymecoffee', href: 'https://buymecoffee.com/bunnfee' }
 ]
 
 const SOCIALS = [
-  { Icon: DiscordIcon, label: 'Discord', props: { size: '48' } },
-  { Icon: TelegramIcon, label: 'Telegram' },
-  { Icon: GmailIcon, label: 'Gmail' }
+  {
+    Icon: DiscordIcon,
+    label: 'Discord',
+    props: { size: '48' },
+    href: 'https://discord.com/'
+  },
+  {
+    Icon: TelegramIcon,
+    label: 'Telegram',
+    href: 'https://web.telegram.org/'
+  },
+  { Icon: GmailIcon, label: 'Gmail', href: 'https://mail.google.com/mail' }
 ]
 
 export { LINKS, SOCIALS }

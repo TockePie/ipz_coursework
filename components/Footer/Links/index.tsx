@@ -1,5 +1,6 @@
 import React from 'react'
-import Link from 'next/link'
+
+import RedirectMiddleware from '@/utils/redirect-middleware'
 
 import Container from '../Container'
 
@@ -8,15 +9,15 @@ import { LINKS, SOCIALS } from './links'
 const Links = () => (
   <>
     <Container title="Ми у соц. мережах" className="gap-6 lg:items-start">
-      {SOCIALS.map(({ Icon, label, props = {} }) => (
-        <a
+      {SOCIALS.map(({ Icon, label, href, props = {} }) => (
+        <RedirectMiddleware
+          href={href}
+          label={label}
           key={label}
-          href="#"
           className="transition-opacity hover:opacity-80"
-          aria-label={label}
         >
           <Icon {...props} />
-        </a>
+        </RedirectMiddleware>
       ))}
     </Container>
 
@@ -24,14 +25,13 @@ const Links = () => (
       title="Корисні посилання"
       className="flex-wrap justify-center gap-4 lg:flex-col lg:items-start"
     >
-      {LINKS.map((link, index) => (
-        <Link
+      {LINKS.map(({ label, href }, index) => (
+        <RedirectMiddleware
+          label={label}
+          href={href}
           key={index}
-          href={link.link}
           className="text-cornsilk font-unbounded cursor-pointer font-light transition-all hover:underline"
-        >
-          {link.name}
-        </Link>
+        />
       ))}
     </Container>
   </>

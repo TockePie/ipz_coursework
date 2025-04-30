@@ -11,52 +11,56 @@ import {
 import BurgerIcon from '@/components/Icons/burger-icon'
 import Colors from '@/types/enums/colors'
 
-const menuLinks = [
+const MENU_LINKS = [
   {
-    name: 'Основні страви',
+    label: 'Основні страви',
     icon: <BurgerIcon color={Colors.BROWN} />,
     href: '/main-dishes',
-    bgColor: 'bg-light-goldenrod-yellow'
+    bgColor: 'bg-light-goldenrod-yellow',
+    bgMainColor: 'bg-pale-turquoise'
   },
   {
-    name: 'Десерти',
+    label: 'Десерти',
     icon: <Dessert color={Colors.BROWN} />,
-    href: '/desserts',
-    bgColor: 'bg-cornsilk'
+    href: '/main/desserts',
+    bgColor: 'bg-cornsilk',
+    bgMainColor: 'bg-mistyrose'
   },
   {
-    name: 'Напої',
+    label: 'Напої',
     icon: <Wine color={Colors.BROWN} />,
-    href: '/drinks',
-    bgColor: 'bg-pale-turquoise'
+    href: '/main/drinks',
+    bgColor: 'bg-pale-turquoise',
+    bgMainColor: 'bg-light-goldenrod-yellow'
   },
   {
-    name: 'Унікальний мерч',
+    label: 'Унікальний мерч',
     icon: <Shirt color={Colors.BROWN} />,
-    href: '/merch',
-    bgColor: 'bg-light-goldenrod-yellow'
+    href: '/menu/merch',
+    bgColor: 'bg-light-goldenrod-yellow',
+    bgMainColor: 'bg-pale-turquoise'
   }
 ]
 
-const pagesLinks = [
+const PAGES_LINKS = [
   {
-    name: 'Забронювати столик',
+    label: 'Забронювати столик',
     icon: <CalendarClock color={Colors.BROWN} />,
-    href: '/reservation',
+    href: '/#booking',
     bgColor: 'bg-cornsilk'
   },
   {
-    name: 'Про нас',
+    label: 'Про нас',
     icon: <Users color={Colors.BROWN} />,
-    href: '/about',
+    href: '/#about',
     bgColor: 'bg-pale-turquoise'
   },
   {
-    name: 'Контакти',
+    label: 'Контакти',
     icon: <Contact color={Colors.BROWN} />,
-    href: '/contacts',
+    href: '#footer',
     bgColor: 'bg-light-goldenrod-yellow'
   }
 ]
 
-export { menuLinks, pagesLinks }
+export { MENU_LINKS, PAGES_LINKS }

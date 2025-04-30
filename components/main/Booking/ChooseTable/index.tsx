@@ -18,9 +18,13 @@ const ChooseTable = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-6">
       <h3>Оберіть столик</h3>
-      <h5>Кількість присутніх</h5>
 
-      <PeopleInput />
+      <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
+        <h5 className="lg:hidden">Кількість присутніх</h5>
+        <h5 className="hidden lg:inline">Скільки людей буде за столом?</h5>
+        <PeopleInput />
+      </div>
+
       <PickTable />
     </div>
   )

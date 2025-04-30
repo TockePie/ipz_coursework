@@ -36,8 +36,10 @@ const Booking = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-        <PickDay />
-        <PickTime />
+        <div className="flex w-full flex-col justify-center gap-6 md:gap-12 lg:flex-row lg:items-start">
+          <PickDay />
+          <PickTime />
+        </div>
         <ChooseTable />
       </form>
     </FormProvider>

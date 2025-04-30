@@ -10,7 +10,7 @@ const BrandSection = () => (
       знову і знову.
     </h4>
 
-    <div className="flex items-end gap-4">
+    <div className="flex items-end gap-4 select-none">
       <RabbitIcon width={32} height={56} color={Colors.CORNSILK} />
       <h1 className="font-meila text-cornsilk text-3xl font-normal lg:text-4xl">
         Bunnfee

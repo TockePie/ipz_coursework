@@ -14,6 +14,7 @@ const Sidebar = () => (
     </SheetTrigger>
 
     <SheetContent className="bg-mistyrose flex w-full flex-col gap-8 p-6">
+      {/* TODO: implement login and registration pages */}
       <div className="flex items-center gap-3.5">
         <CircleUserRound color={Colors.CORAL} size="36" />
         <h2 className="text-coral font-unbounded text-2xl font-medium">
@@ -22,7 +23,6 @@ const Sidebar = () => (
       </div>
 
       <Buttons />
-
       <Links />
     </SheetContent>
   </Sheet>

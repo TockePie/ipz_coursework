@@ -4,8 +4,8 @@ import './styles.css'
 
 const AboutUs = () => {
   return (
-    <div className="flex flex-col items-center gap-4 text-center outline-none">
-      <p className="font-unbounded text-md text-left">
+    <div className="flex flex-col items-center gap-4 overflow-hidden text-center">
+      <p className="font-unbounded text-md text-brown text-left lg:text-center">
         <b>Bunnfee</b> – це не просто ресторан, а затишний куточок, де кожна
         страва наповнена теплом, турботою та натхненням. Ми створюємо атмосферу,
         що огортає комфортом, немов м&apos;які лапки кролика, а кожен відвідувач

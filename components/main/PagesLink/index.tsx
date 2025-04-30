@@ -12,7 +12,7 @@ const PagesLink = () => {
       href={link.href}
       key={index}
       className={clsx(
-        link.bgColor,
+        link.bgMainColor,
         'border-brown flex justify-between gap-2.5 rounded-2xl border p-4'
       )}
     >

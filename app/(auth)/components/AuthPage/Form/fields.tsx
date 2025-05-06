@@ -1,40 +1,28 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Input } from '@ui/input'
-import validator from 'validator'
 
-const INPUTS = [
-  {
-    name: 'phone_number',
-    register: {
-      required: 'Це поле обов’язкове',
-      minLength: {
-        value: 10,
-        message: 'Мінімум 10 цифр'
-      },
-      validate: (value: string) =>
-        validator.isMobilePhone(value, 'uk-UA')
-          ? true
-          : 'Неправильний номер телефону'
-    },
-    placeholder: 'Телефон',
-    type: 'text'
-  },
-  {
-    name: 'password',
-    register: {
-      required: 'Це поле обов’язкове',
-      minLength: {
-        value: 8,
-        message: 'Пароль має містити щонайменше 8 символів'
-      }
-    },
-    placeholder: 'Пароль',
-    type: 'password'
+type INPUTS = {
+  name: string
+  register: {
+    required: string
+    minLength: {
+      value: number
+      message: string
+    }
+    validate?: undefined
   }
-]
+  placeholder: string
+  type: string
+}
 
-const Fields = () => {
+interface FieldsProps {
+  INPUTS: INPUTS[]
+}
+
+const Fields = (props: FieldsProps) => {
+  const { INPUTS } = props
+
   const {
     register,
     formState: { errors }

@@ -32,7 +32,15 @@ const spinner = (
   </svg>
 )
 
-const Buttons = () => {
+interface ButtonsProps {
+  firstBtnText: string
+  secondBtnText: string
+  secondaryBtnRoute: string
+}
+
+const Buttons = (props: ButtonsProps) => {
+  const { firstBtnText, secondBtnText, secondaryBtnRoute } = props
+
   const { isLoading } = useAuth()
 
   return (
@@ -46,7 +54,7 @@ const Buttons = () => {
         type="submit"
       >
         {isLoading && spinner}
-        Зареєструватися
+        {firstBtnText}
       </Button>
 
       <Button
@@ -54,7 +62,7 @@ const Buttons = () => {
         className="border-strong-cyan font-unbounded text-strong-cyan hover:bg-strong-cyan/10 hover:text-strong-cyan h-12 bg-transparent shadow-none"
         asChild
       >
-        <Link href="/login">Увійти</Link>
+        <Link href={`/${secondaryBtnRoute}`}>{secondBtnText}</Link>
       </Button>
     </div>
   )

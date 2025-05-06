@@ -29,11 +29,17 @@ const Navbar = () => (
         ))}
       </ul>
 
-      {/* TODO: implement login and registration pages */}
       <div className="font-unbounded flex items-center gap-3">
-        <Button>Увійти</Button>
-        <Button color="cornsilk" variant="outline" className="max-sm:hidden">
-          Реєстрація
+        <Button asChild>
+          <Link href="/login">Увійти</Link>
+        </Button>
+        <Button
+          color="cornsilk"
+          variant="outline"
+          className="max-sm:hidden"
+          asChild
+        >
+          <Link href="/register">Зареєструватися</Link>
         </Button>
 
         <Sidebar />

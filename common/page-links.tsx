@@ -22,14 +22,14 @@ const MENU_LINKS = [
   {
     label: 'Десерти',
     icon: <Dessert color={Colors.BROWN} />,
-    href: '/main/desserts',
+    href: '/menu/desserts',
     bgColor: 'bg-cornsilk',
     bgMainColor: 'bg-mistyrose'
   },
   {
     label: 'Напої',
     icon: <Wine color={Colors.BROWN} />,
-    href: '/main/drinks',
+    href: '/menu/drinks',
     bgColor: 'bg-pale-turquoise',
     bgMainColor: 'bg-light-goldenrod-yellow'
   },

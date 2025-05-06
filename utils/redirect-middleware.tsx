@@ -34,19 +34,17 @@ const RedirectMiddleware = ({
   href: string
   className?: string
   children?: ReactNode
-}) => {
-  return (
-    <Link
-      href={href}
-      className={className}
-      onClick={(e) => {
-        e.preventDefault()
-        redirectTo(href)
-      }}
-    >
-      {children || label}
-    </Link>
-  )
-}
+}) => (
+  <Link
+    href={href}
+    className={className}
+    onClick={(e) => {
+      e.preventDefault()
+      redirectTo(href)
+    }}
+  >
+    {children || label}
+  </Link>
+)
 
 export default RedirectMiddleware

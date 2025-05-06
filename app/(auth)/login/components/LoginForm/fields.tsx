@@ -5,30 +5,6 @@ import validator from 'validator'
 
 const INPUTS = [
   {
-    name: 'first_name',
-    register: {
-      required: 'Це поле обов’язкове',
-      minLength: {
-        value: 2,
-        message: 'Мінімум 2 символи'
-      }
-    },
-    placeholder: "Ім'я",
-    type: 'text'
-  },
-  {
-    name: 'last_name',
-    register: {
-      required: 'Це поле обов’язкове',
-      minLength: {
-        value: 2,
-        message: 'Мінімум 2 символи'
-      }
-    },
-    placeholder: 'Прізвище',
-    type: 'text'
-  },
-  {
     name: 'phone_number',
     register: {
       required: 'Це поле обов’язкове',

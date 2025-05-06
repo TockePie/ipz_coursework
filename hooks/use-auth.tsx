@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 
 import { login, register } from '@/api/auth'
@@ -9,40 +10,42 @@ export const useAuth = () => {
 
   const loginMutation = useMutation({
     mutationFn: login,
-    onSuccess: (data) => {
-      console.log('Login success:', data)
-      localStorage.setItem('user_id', data.user_id)
-      void queryClient.invalidateQueries({ queryKey: ['user'] })
-      void router.push('/')
-    }
-  })
-
-  const registerMutation = useMutation({
-    mutationFn: register,
-    onSuccess: (data) => {
-      localStorage.setItem('user_id', data.user_id)
-      void queryClient.invalidateQueries({ queryKey: ['user'] })
-      void router.push('/')
+    onSuccess: async (data) => {
+      Cookies.set('user_id', data.id, { expires: 7 }) // Set cookie with 7 days expiration
+      await queryClient.invalidateQueries({ queryKey: ['user'] })
+      router.push('/')
     },
     onError: (error) => {
       console.error('Auth error:', error)
     }
   })
 
-  const logout = () => {
-    localStorage.removeItem('user_id')
-    void queryClient.invalidateQueries({ queryKey: ['user'] })
-    void router.push('/')
+  const registerMutation = useMutation({
+    mutationFn: register,
+    onSuccess: async (data) => {
+      Cookies.set('user_id', data.id, { expires: 7 }) // Set cookie with 7 days expiration
+      await queryClient.invalidateQueries({ queryKey: ['user'] })
+      router.push('/')
+    },
+    onError: (error) => {
+      console.error('Auth error:', error)
+    }
+  })
+
+  const logout = async () => {
+    Cookies.remove('user_id')
+    await queryClient.invalidateQueries({ queryKey: ['user'] })
+    router.push('/')
   }
 
   const isAuthenticated = () => {
     if (typeof window === 'undefined') return false
-    return !!localStorage.getItem('user_id')
+    return !!Cookies.get('user_id')
   }
 
   const getUserId = () => {
     if (typeof window === 'undefined') return null
-    return localStorage.getItem('user_id')
+    return Cookies.get('user_id')
   }
 
   return {

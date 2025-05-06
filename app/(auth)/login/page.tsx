@@ -8,13 +8,13 @@ import Colors from '@/types/enums/colors'
 
 import TileableBackground from '../components/taliable-bg'
 
-import RegisterForm from './components/RegisterForm'
+import LoginForm from './components/LoginForm'
 
 export const metadata = {
-  title: 'Register - Bunnfee'
+  title: 'Login - Bunnfee'
 }
 
-const RegisterPage = async () => {
+const LoginPage = async () => {
   const cookieStore = await cookies()
   const userId = cookieStore.get('user_id')?.value
 
@@ -25,7 +25,7 @@ const RegisterPage = async () => {
   return (
     <>
       <TileableBackground />
-      <main className="bg-cornsilk relative flex min-h-screen flex-col items-center gap-6 overflow-hidden py-8">
+      <main className="bg-mistyrose relative flex min-h-screen flex-col items-center gap-6 overflow-hidden py-8">
         <div className="z-10 flex items-end justify-center gap-6">
           <RabbitIcon width={57} height={99} color={Colors.LIGHTCORAL} />
           <span className="font-unbounded text-coral text-2xl font-black">
@@ -33,7 +33,7 @@ const RegisterPage = async () => {
           </span>
         </div>
 
-        <RegisterForm />
+        <LoginForm />
 
         <Image
           src="/rabbit-ears-auth-page.png"
@@ -47,4 +47,4 @@ const RegisterPage = async () => {
   )
 }
 
-export default RegisterPage
+export default LoginPage

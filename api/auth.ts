@@ -11,7 +11,7 @@ interface RegisterCredentials extends LoginCredentials {
 }
 
 interface AuthResponse {
-  user_id: string
+  id: string
 }
 
 const login = async (credentials: LoginCredentials): Promise<AuthResponse> => {
@@ -23,7 +23,6 @@ const register = async (
   credentials: RegisterCredentials
 ): Promise<AuthResponse> => {
   const { data } = await axiosInstance.post('/users/register', credentials)
-  console.log(data)
   return data
 }
 

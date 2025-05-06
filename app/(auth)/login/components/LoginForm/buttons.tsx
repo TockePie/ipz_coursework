@@ -46,7 +46,7 @@ const Buttons = () => {
         type="submit"
       >
         {isLoading && spinner}
-        Зареєструватися
+        Увійти
       </Button>
 
       <Button
@@ -54,7 +54,7 @@ const Buttons = () => {
         className="border-strong-cyan font-unbounded text-strong-cyan hover:bg-strong-cyan/10 hover:text-strong-cyan h-12 bg-transparent shadow-none"
         asChild
       >
-        <Link href="/login">Увійти</Link>
+        <Link href="/register">Зареєструватися</Link>
       </Button>
     </div>
   )

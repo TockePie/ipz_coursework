@@ -1,11 +1,11 @@
 import React from 'react'
-import { Button } from '@ui/button'
 import Link from 'next/link'
 
 import RabbitIcon from '@/components/Icons/rabbit-icon'
 import Sidebar from '@/components/Sidebar'
 import RedirectMiddleware from '@/utils/redirect-middleware'
 
+import Auth from './Auth'
 import NAV_LINKS from './links'
 
 const Navbar = () => (
@@ -30,18 +30,7 @@ const Navbar = () => (
       </ul>
 
       <div className="font-unbounded flex items-center gap-3">
-        <Button asChild>
-          <Link href="/login">Увійти</Link>
-        </Button>
-        <Button
-          color="cornsilk"
-          variant="outline"
-          className="max-sm:hidden"
-          asChild
-        >
-          <Link href="/register">Зареєструватися</Link>
-        </Button>
-
+        <Auth />
         <Sidebar />
       </div>
     </div>

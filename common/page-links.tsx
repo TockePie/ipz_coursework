@@ -15,13 +15,15 @@ const MENU_LINKS = [
   {
     label: 'Основні страви',
     icon: <BurgerIcon color={Colors.BROWN} />,
-    href: '/main-dishes',
+    routeName: 'main',
+    href: '/menu/main',
     bgColor: 'bg-light-goldenrod-yellow',
     bgMainColor: 'bg-pale-turquoise'
   },
   {
     label: 'Десерти',
     icon: <Dessert color={Colors.BROWN} />,
+    routeName: 'desserts',
     href: '/menu/desserts',
     bgColor: 'bg-cornsilk',
     bgMainColor: 'bg-mistyrose'
@@ -29,6 +31,7 @@ const MENU_LINKS = [
   {
     label: 'Напої',
     icon: <Wine color={Colors.BROWN} />,
+    routeName: 'drinks',
     href: '/menu/drinks',
     bgColor: 'bg-pale-turquoise',
     bgMainColor: 'bg-light-goldenrod-yellow'
@@ -36,6 +39,7 @@ const MENU_LINKS = [
   {
     label: 'Унікальний мерч',
     icon: <Shirt color={Colors.BROWN} />,
+    routeName: 'merch',
     href: '/menu/merch',
     bgColor: 'bg-light-goldenrod-yellow',
     bgMainColor: 'bg-pale-turquoise'

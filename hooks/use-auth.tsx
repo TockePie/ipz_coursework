@@ -11,7 +11,7 @@ export const useAuth = () => {
   const loginMutation = useMutation({
     mutationFn: login,
     onSuccess: async (data) => {
-      Cookies.set('user_id', data.id, { expires: 7 }) // Set cookie with 7 days expiration
+      Cookies.set('user_id', data.user_id, { expires: 7 }) // Set cookie with 7 days expiration
       await queryClient.invalidateQueries({ queryKey: ['user'] })
       router.push('/')
     },
@@ -23,7 +23,7 @@ export const useAuth = () => {
   const registerMutation = useMutation({
     mutationFn: register,
     onSuccess: async (data) => {
-      Cookies.set('user_id', data.id, { expires: 7 }) // Set cookie with 7 days expiration
+      Cookies.set('user_id', data.user_id, { expires: 7 }) // Set cookie with 7 days expiration
       await queryClient.invalidateQueries({ queryKey: ['user'] })
       router.push('/')
     },

@@ -7,7 +7,8 @@ enum Colors {
   LIGHTGOLDENRODYELLOW = 'hsl(99, 100%, 91%)',
   PALETURQUOISE = 'hsl(170, 100%, 89%)',
   STRONGCYAN = 'hsl(170, 85%, 41%)',
-  BRIGHTCYAN = 'hsl(170, 73%, 54%)'
+  BRIGHTCYAN = 'hsl(170, 73%, 54%)',
+  WHITE = 'hsl(0, 0%, 100%)'
 }
 
 export default Colors

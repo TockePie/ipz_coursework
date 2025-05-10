@@ -1,32 +1,20 @@
+// instance.ts
 import axios from 'axios'
-import normalizeUrl from 'normalize-url'
 
-const env = process.env.NODE_ENV
-let baseURL: string = normalizeUrl('http://localhost:5000/api') // Default value
-let imageURL: string = normalizeUrl('http://localhost:5000/static/images') // Default value
+import { API_BASE_URL, IMG_BASE_URL, REQUEST_TIMEOUT } from './config'
 
-if (env == 'production') {
-  baseURL = normalizeUrl('https://ipz-restaurant-app.onrender.com/api')
-  imageURL = normalizeUrl(
-    'https://ipz-restaurant-app.onrender.com/static/images'
-  )
-}
+const defaultHeaders = { 'Content-Type': 'application/json' }
 
-const axiosInstance = axios.create({
-  baseURL,
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  timeout: REQUEST_TIMEOUT,
+  headers: defaultHeaders
 })
 
-const axiosImageInstance = axios.create({
-  baseURL: imageURL,
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+const imgApi = axios.create({
+  baseURL: IMG_BASE_URL,
+  timeout: REQUEST_TIMEOUT,
+  headers: defaultHeaders
 })
 
-export { axiosImageInstance }
-export default axiosInstance
+export { api, imgApi }

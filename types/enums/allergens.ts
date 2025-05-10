@@ -4,22 +4,22 @@ import ShrimpIcon from '@/components/Icons/ui/shrimp-icon'
 import SteakIcon from '@/components/Icons/ui/steak-icon'
 
 export enum Allergens {
+  DELIVERY = 'delivery',
   MEAT = 'meat',
   SEAFOOD = 'seafood',
-  DELIVERY = 'delivery',
   SPICY = 'spicy'
 }
 
 export const AllergensIcons = {
-  [Allergens.SPICY]: PepperIcon,
+  [Allergens.DELIVERY]: AmbulanceIcon,
   [Allergens.MEAT]: SteakIcon,
   [Allergens.SEAFOOD]: ShrimpIcon,
-  [Allergens.DELIVERY]: AmbulanceIcon
+  [Allergens.SPICY]: PepperIcon
 }
 
 export const AllergensLabels = {
-  [Allergens.SPICY]: 'Гостра їжа',
-  [Allergens.MEAT]: 'М’ясо',
+  [Allergens.DELIVERY]: 'Арахіс',
+  [Allergens.MEAT]: "М'ясо",
   [Allergens.SEAFOOD]: 'Морепродукти',
-  [Allergens.DELIVERY]: 'Арахіс'
+  [Allergens.SPICY]: 'Гостра їжа'
 }

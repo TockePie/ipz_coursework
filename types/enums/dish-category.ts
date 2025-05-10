@@ -1,7 +1,7 @@
 enum DishCategory {
-  main = 'Основні страви',
   desserts = 'Десерти',
   drinks = 'Гарячі напої',
+  main = 'Основні страви',
   merch = 'Мерч'
 }
 

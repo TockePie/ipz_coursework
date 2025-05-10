@@ -1,8 +1,7 @@
 import React from 'react'
+import { Button } from '@ui/button'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-
-import { Button } from '../../ui/button'
 
 const Banner = () => (
   <div className="border-brown bg-mistyrose text-brown relative flex flex-col gap-4 rounded-3xl border-2 px-3 py-6">

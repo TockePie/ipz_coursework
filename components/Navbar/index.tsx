@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 import RabbitIcon from '@/components/Icons/rabbit-icon'
 import Sidebar from '@/components/Sidebar'
-import RedirectMiddleware from '@/utils/redirect-middleware'
 
 import Auth from './Auth'
 import NAV_LINKS from './links'
@@ -21,13 +20,13 @@ const Navbar = () => (
         </h1>
       </Link>
 
-      <ul className="text-cornsilk font-unbounded flex items-center gap-4 select-none max-lg:hidden xl:gap-8">
+      <div className="text-cornsilk font-unbounded flex items-center gap-4 select-none max-lg:hidden xl:gap-8">
         {NAV_LINKS.map(({ label, href }) => (
-          <li key={label}>
-            <RedirectMiddleware label={label} href={href} />
-          </li>
+          <Link key={label} href={href}>
+            {label}
+          </Link>
         ))}
-      </ul>
+      </div>
 
       <div className="font-unbounded flex items-center gap-3">
         <Auth />

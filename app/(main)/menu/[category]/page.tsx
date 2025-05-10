@@ -1,25 +1,29 @@
 import React from 'react'
 
-import Banner from '@/components/main/Banner'
+// import Banner from '@/components/main/Banner'
 import BlockSection from '@/components/main/BlockSection'
+import DishCategory from '@/types/enums/dish-category'
 
 import Categories from './components/Categories'
-import ItemsGroup from './components/ItemsGroup'
+import DishGroup from './components/DishGroup'
 
 const MenuCategoryPage = async ({
   params
 }: {
-  params: Promise<{ category: string }>
+  params: Promise<{ category: DishCategory }>
 }) => {
   const { category } = await params
 
   return (
     <main className="bg-cornsilk flex min-h-screen flex-col items-center gap-y-6 p-6">
-      <Banner />
+      {/* TODO: Add a banner component here */}
+      {/* <Banner /> */}
 
       <BlockSection title="Меню">
-        <Categories currentCategory={category} />
-        <ItemsGroup category={category} />
+        <div className="mb-5 flex w-full flex-col gap-y-4">
+          <Categories currentCategory={category} />
+          <DishGroup currentCategory={category as keyof typeof DishGroup} />
+        </div>
       </BlockSection>
     </main>
   )

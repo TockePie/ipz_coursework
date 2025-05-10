@@ -3,7 +3,7 @@ import { Button } from '@ui/button'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import { useAuth } from '@/hooks/use-auth'
+import useAuth from '@/hooks/use-auth'
 
 const spinner = (
   <svg
@@ -32,13 +32,13 @@ const spinner = (
   </svg>
 )
 
-interface ButtonsProps {
+interface Props {
   firstBtnText: string
   secondBtnText: string
   secondaryBtnRoute: string
 }
 
-const Buttons = (props: ButtonsProps) => {
+const Buttons = (props: Props) => {
   const { firstBtnText, secondBtnText, secondaryBtnRoute } = props
 
   const { isLoading } = useAuth()

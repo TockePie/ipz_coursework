@@ -20,12 +20,12 @@ const getColor = (color: Colors) => {
   }
 }
 
-interface AuthPageProps {
+interface Props {
   color: Colors
   FormComponent: ComponentType
 }
 
-const AuthPage = async (props: AuthPageProps) => {
+const AuthPage = async (props: Props) => {
   const { color, FormComponent } = props
 
   const cookieStore = await cookies()

@@ -1,3 +1,5 @@
+import { Allergens } from './enums/allergens'
+
 interface Dish {
   id: number
   name: string
@@ -6,7 +8,7 @@ interface Dish {
   image_url: string
   category: string
   is_available: boolean
-  tags: `<${string}>`[]
+  tags: string[] | Allergens[]
   variants: Variants[]
   modifier_groups: ModifierGroup[]
 }

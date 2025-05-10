@@ -4,7 +4,7 @@ import React from 'react'
 import { Button } from '@ui/button'
 import Link from 'next/link'
 
-import { useAuth } from '@/hooks/use-auth'
+import useAuth from '@/hooks/use-auth'
 
 const Buttons = () => {
   const { isAuthenticated } = useAuth()

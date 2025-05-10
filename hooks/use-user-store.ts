@@ -2,18 +2,18 @@ import { create } from 'zustand'
 
 import { User } from '@/api/auth'
 
-interface UserStoreState {
+interface StoreState {
   userInfo: User | null
 }
 
-interface UserStoreActions {
+interface StoreActions {
   setUserInfo: (user: User) => void
 }
 
-export const useUserStore = create<UserStoreState & UserStoreActions>(
-  (set) => ({
-    userInfo: null,
+const useUserStore = create<StoreState & StoreActions>((set) => ({
+  userInfo: null,
 
-    setUserInfo: (user) => set({ userInfo: user })
-  })
-)
+  setUserInfo: (user) => set({ userInfo: user })
+}))
+
+export default useUserStore

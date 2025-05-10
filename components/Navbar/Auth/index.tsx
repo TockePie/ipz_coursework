@@ -1,11 +1,11 @@
 'use client'
 
 import React from 'react'
+import { Button } from '@ui/button'
 import { CircleUserRound } from 'lucide-react'
 import Link from 'next/link'
 
-import { Button } from '@/components/ui/button'
-import { useAuth } from '@/hooks/use-auth'
+import useAuth from '@/hooks/use-auth'
 
 const Auth = () => {
   const { isAuthenticated } = useAuth()
@@ -23,6 +23,7 @@ const Auth = () => {
       <Button asChild>
         <Link href="/login">Увійти</Link>
       </Button>
+
       <Button
         color="cornsilk"
         variant="outline"

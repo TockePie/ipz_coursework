@@ -1,6 +1,6 @@
-import DiscordIcon from '@/components/Icons/discord-icon'
-import GmailIcon from '@/components/Icons/gmail-icon'
-import TelegramIcon from '@/components/Icons/telegram-icon'
+import DiscordIcon from '@/components/Icons/socials/discord-icon'
+import GmailIcon from '@/components/Icons/socials/gmail-icon'
+import TelegramIcon from '@/components/Icons/socials/telegram-icon'
 
 const LINKS = [
   { label: 'меню', href: '/menu' },

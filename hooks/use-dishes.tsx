@@ -1,9 +1,10 @@
+'use client'
+
 import { useQueries, useQuery } from '@tanstack/react-query'
 
 import { getDishes, getDishImage } from '@/api/dish'
-import { DishImage } from '@/types/dish'
 
-export const useDishes = () => {
+const useDishes = () => {
   const query = useQuery({
     queryKey: ['dishes'],
     queryFn: getDishes,
@@ -15,15 +16,27 @@ export const useDishes = () => {
     queries:
       query.data?.map((item) => ({
         queryKey: ['dish', item.id],
+        //TODO: use a better way to get the image url
         queryFn: () => getDishImage(item.image_url.split('/')[3]),
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
+        staleTime: 1000 * 60 * 10 // 10 minutes
       })) || [],
     combine: (results) => {
+      const dataMap: Record<number, string | undefined> = {}
+      const dishList = query.data || []
+
+      for (const [i, result] of results.entries()) {
+        const dish = dishList[i]
+        if (dish) {
+          dataMap[dish.id] = result.data
+        }
+      }
+
       return {
-        data: results.map((result) => result.data),
+        data: dataMap,
         isLoading: results.some((result) => result.isLoading),
         isError: results.some((result) => result.isError)
-      } as DishImage
+      }
     }
   })
 
@@ -36,3 +49,5 @@ export const useDishes = () => {
     images
   }
 }
+
+export default useDishes

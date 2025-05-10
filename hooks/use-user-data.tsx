@@ -6,9 +6,9 @@ import Cookies from 'js-cookie'
 
 import { getUser } from '@/api/auth'
 
-import { useUserStore } from './use-user-store'
+import useUserStore from './use-user-store'
 
-export const useUserData = () => {
+const useUserData = () => {
   const { setUserInfo } = useUserStore()
   const user_id = Cookies.get('user_id')
 
@@ -29,3 +29,5 @@ export const useUserData = () => {
 
   return query
 }
+
+export default useUserData

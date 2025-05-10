@@ -2,7 +2,7 @@ import React, { SVGProps } from 'react'
 
 import Colors from '@/types/enums/colors'
 
-interface DiscordIconProps extends SVGProps<SVGSVGElement> {
+interface Props extends SVGProps<SVGSVGElement> {
   size?: string | number
   outerColor?: Colors
   innerColor?: Colors
@@ -14,7 +14,7 @@ const DiscordIcon = ({
   outerColor = Colors.CORNSILK,
   className,
   ...props
-}: DiscordIconProps) => (
+}: Props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     shapeRendering="geometricPrecision"

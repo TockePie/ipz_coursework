@@ -24,6 +24,8 @@ const redirectTo = (href: string) => {
   }
 }
 
+//XXX: Use this component only when you need to redirect to a different page or URL. Use the Link component for internal links.
+//TODO: remove this component usage in other components and use the Link component instead.
 const RedirectMiddleware = ({
   label,
   href,

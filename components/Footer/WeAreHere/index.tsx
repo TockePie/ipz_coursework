@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MapPinIcon from '@/components/Icons/map-pin-icon'
+import MapPinIcon from '@/components/Icons/ui/map-pin-icon'
 
 import Container from '../Container'
 

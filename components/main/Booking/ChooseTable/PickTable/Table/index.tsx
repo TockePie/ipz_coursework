@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface TableProps {
+interface Props {
   width?: number
   number?: number
   seats?: {
@@ -11,7 +11,7 @@ interface TableProps {
   }
 }
 
-const Table = (props: TableProps) => {
+const Table = (props: Props) => {
   const {
     width = 1,
     number,

@@ -3,9 +3,9 @@
 import React from 'react'
 import { CircleUserRound } from 'lucide-react'
 
-import { useAuth } from '@/hooks/use-auth'
-import { useUserData } from '@/hooks/use-user-data'
-import { useUserStore } from '@/hooks/use-user-store'
+import useAuth from '@/hooks/use-auth'
+import useUserData from '@/hooks/use-user-data'
+import useUserStore from '@/hooks/use-user-store'
 import Colors from '@/types/enums/colors'
 
 const Account = () => {

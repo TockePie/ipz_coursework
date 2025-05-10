@@ -8,7 +8,7 @@ import {
   Wine
 } from 'lucide-react'
 
-import BurgerIcon from '@/components/Icons/burger-icon'
+import BurgerIcon from '@/components/Icons/ui/burger-icon'
 import Colors from '@/types/enums/colors'
 
 const MENU_LINKS = [

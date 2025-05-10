@@ -1,10 +1,12 @@
+'use client'
+
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 
 import { login, register } from '@/api/auth'
 
-export const useAuth = () => {
+const useAuth = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
 
@@ -58,3 +60,5 @@ export const useAuth = () => {
     error: loginMutation.error || registerMutation.error
   }
 }
+
+export default useAuth

@@ -2,7 +2,7 @@ import React, { SVGProps } from 'react'
 
 import Colors from '@/types/enums/colors'
 
-interface GmailIconProps extends SVGProps<SVGSVGElement> {
+interface Props extends SVGProps<SVGSVGElement> {
   size?: string | number
   outerColor?: Colors
   innerColor?: Colors
@@ -14,7 +14,7 @@ const GmailIcon = ({
   outerColor = Colors.CORNSILK,
   className,
   ...props
-}: GmailIconProps) => (
+}: Props) => (
   <svg
     width={size}
     height={size}

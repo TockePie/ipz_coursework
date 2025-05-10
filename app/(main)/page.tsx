@@ -27,7 +27,7 @@ const Home = () => (
       <Booking />
     </BlockSection>
 
-    <BlockSection title="Про нас" id="about">
+    <BlockSection title="Про нас" id="about" className="p-0">
       <AboutUs />
     </BlockSection>
   </main>

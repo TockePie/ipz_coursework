@@ -17,10 +17,11 @@ import useFilters from '@/hooks/use-filters'
 import { Allergens, AllergensLabels } from '@/types/enums/allergens'
 
 const Filters = () => {
-  const [selectedAllergens, setSelectedAllergens] = useState<Allergens[]>([])
-  const [localPriceRange, setLocalPriceRange] = useState<number[]>([0, 320])
+  const { allergens, priceRange, setAllergens, setPriceRange } = useFilters()
   const closeDialog = useRef<HTMLButtonElement>(null)
-  const { setAllergens, setPriceRange } = useFilters()
+  const [selectedAllergens, setSelectedAllergens] =
+    useState<Allergens[]>(allergens)
+  const [localPriceRange, setLocalPriceRange] = useState<number[]>(priceRange)
 
   const toggleAllergen = (allergen: Allergens) => {
     setSelectedAllergens((prev) =>
@@ -96,7 +97,7 @@ const Filters = () => {
           </div>
 
           <Button
-            className="bg-strong-cyan hover:bg-strong-cyan/80 active:bg-strong-cyan/60 font-unbounded text-white shadow-none"
+            className="bg-strong-cyan hover:bg-strong-cyan/80 active:bg-strong-cyan/60 font-unbounded mt-2 h-13 w-48 text-white shadow-none"
             onClick={() => {
               setAllergens(selectedAllergens)
               setPriceRange(localPriceRange)
@@ -106,9 +107,9 @@ const Filters = () => {
             Застосувати
           </Button>
         </div>
-
-        <DialogClose ref={closeDialog} />
       </DialogContent>
+
+      <DialogClose ref={closeDialog} />
     </Dialog>
   )
 }

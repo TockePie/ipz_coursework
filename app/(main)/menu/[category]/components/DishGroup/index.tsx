@@ -47,7 +47,7 @@ const DishGroup = (props: Props) => {
 
   if (isError) {
     return (
-      <div className="h-64 w-full rounded-2xl bg-red-200">
+      <div className="flex h-64 w-full items-center justify-center rounded-2xl bg-red-200">
         <p className="text-center text-red-600">Помилка</p>
       </div>
     )

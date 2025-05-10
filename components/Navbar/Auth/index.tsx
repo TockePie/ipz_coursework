@@ -12,7 +12,7 @@ const Auth = () => {
 
   if (isAuthenticated()) {
     return (
-      <Button size="icon" variant="ghost" asChild>
+      <Button size="icon" variant="ghost" className="hidden lg:inline" asChild>
         <CircleUserRound />
       </Button>
     )

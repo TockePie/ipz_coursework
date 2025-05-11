@@ -23,7 +23,7 @@ const Home = () => (
       </div>
     </BlockSection>
 
-    <BlockSection title="Бронювання">
+    <BlockSection title="Бронювання" id="booking">
       <Booking />
     </BlockSection>
 

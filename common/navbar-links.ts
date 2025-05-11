@@ -1,7 +1,7 @@
 const NAV_LINKS = [
   {
     label: 'Меню',
-    href: '/menu'
+    href: '/menu/main'
   },
   {
     label: 'Мерч',
@@ -9,7 +9,7 @@ const NAV_LINKS = [
   },
   {
     label: 'Бронювання',
-    href: '/#reservation'
+    href: '/#booking'
   },
   {
     label: 'Про нас',

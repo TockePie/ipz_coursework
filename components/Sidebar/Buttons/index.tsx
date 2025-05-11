@@ -1,15 +1,13 @@
-'use client'
-
 import React from 'react'
 import { Button } from '@ui/button'
 import Link from 'next/link'
 
-import useAuth from '@/hooks/use-auth'
+import isAuthenticated from '@/utils/is-authenticated'
 
-const Buttons = () => {
-  const { isAuthenticated } = useAuth()
-
-  if (isAuthenticated()) return null
+const Buttons = async () => {
+  if (await isAuthenticated()) {
+    return null
+  }
 
   return (
     <div className="flex gap-2 max-md:inline-flex md:hidden">

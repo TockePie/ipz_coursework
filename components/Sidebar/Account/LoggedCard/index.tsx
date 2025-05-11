@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { CircleUserRound, LogOut, Pencil } from 'lucide-react'
 import Link from 'next/link'
@@ -11,6 +13,11 @@ const LoggedCard = () => {
   const { logout } = useAuth()
   const { userInfo } = useUserStore((state) => state)
   useUserData()
+
+  const handleLogOut = async () => {
+    await logout()
+    window.location.reload()
+  }
 
   return (
     <div className="mt-5 flex items-center gap-3.5 rounded-3xl bg-white p-4 shadow-md">
@@ -31,10 +38,7 @@ const LoggedCard = () => {
           size="30"
           strokeWidth={1.5}
           className="cursor-pointer"
-          onClick={async () => {
-            await logout()
-            window.location.reload()
-          }}
+          onClick={handleLogOut}
         />
 
         <Link href="/profile">

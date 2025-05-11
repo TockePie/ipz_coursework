@@ -1,17 +1,13 @@
-'use client'
-
 import React from 'react'
 import { CircleUserRound } from 'lucide-react'
 
-import useAuth from '@/hooks/use-auth'
 import Colors from '@/types/enums/colors'
+import isAuthenticated from '@/utils/is-authenticated'
 
 import LoggedCard from './LoggedCard'
 
-const Account = () => {
-  const { isAuthenticated } = useAuth()
-
-  if (isAuthenticated()) {
+const Account = async () => {
+  if (await isAuthenticated()) {
     return <LoggedCard />
   }
 

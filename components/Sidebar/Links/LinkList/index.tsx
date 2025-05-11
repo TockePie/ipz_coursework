@@ -1,28 +1,30 @@
-import React, { FC } from 'react'
+import React, { ReactNode } from 'react'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 import { SheetClose } from '@/components/ui/sheet'
-import RedirectMiddleware from '@/utils/redirect-middleware'
 
 type LinkItem = {
   href: string
   label: string
-  icon: React.ReactNode
+  icon: ReactNode
   bgColor?: string
 }
 
-interface LinkListProps {
+interface Props {
   title: string
   links: LinkItem[]
   className?: string
 }
 
-const LinkList: FC<LinkListProps> = ({ title, links, className }) => (
+const LinkList = ({ title, links, className }: Props) => (
   <div className={clsx('mt-0 flex flex-col gap-4', className)}>
     <h2 className="font-unbounded text-brown text-2xl font-medium">{title}</h2>
+
+    {/* TODO: Fix jumping to top of the page when clicking on a link */}
     {links.map((link, index) => (
       <SheetClose key={index} asChild>
-        <RedirectMiddleware
+        <Link
           href={link.href}
           className={clsx(
             link.bgColor,
@@ -33,7 +35,7 @@ const LinkList: FC<LinkListProps> = ({ title, links, className }) => (
           <span className="text-brown font-unbounded text-lg">
             {link.label}
           </span>
-        </RedirectMiddleware>
+        </Link>
       </SheetClose>
     ))}
   </div>

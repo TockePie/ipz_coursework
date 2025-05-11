@@ -1,11 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
 
+import NAV_LINKS from '@/common/navbar-links'
 import RabbitIcon from '@/components/Icons/rabbit-icon'
 import Sidebar from '@/components/Sidebar'
 
 import Auth from './Auth'
-import NAV_LINKS from './links'
 
 const Navbar = () => (
   <nav className="bg-light-coral">

@@ -1,14 +1,14 @@
 import React from 'react'
 import clsx from 'clsx'
 import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 import { MENU_LINKS } from '@/common/page-links'
 import Colors from '@/types/enums/colors'
-import RedirectMiddleware from '@/utils/redirect-middleware'
 
 const PagesLink = () => {
   return MENU_LINKS.map((link, index) => (
-    <RedirectMiddleware
+    <Link
       href={link.href}
       key={index}
       className={clsx(
@@ -18,7 +18,7 @@ const PagesLink = () => {
     >
       <h2>{link.label}</h2>
       <ChevronRight color={Colors.BROWN} size="28" />
-    </RedirectMiddleware>
+    </Link>
   ))
 }
 

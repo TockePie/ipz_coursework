@@ -19,6 +19,7 @@ const Booking = () => {
   })
   const { handleSubmit, watch } = methods
 
+  //TODO: add data type
   const onSubmit = async (data) => {
     console.log(data)
   }

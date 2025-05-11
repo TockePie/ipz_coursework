@@ -3,7 +3,7 @@
 import React from 'react'
 
 import useDishes from '@/hooks/use-dishes'
-import useFilters from '@/hooks/use-filters'
+import useFiltersStore from '@/hooks/use-filters-store'
 import DishCategory from '@/types/enums/dish-category'
 
 import DishCard from './DishCard'
@@ -16,7 +16,7 @@ const DishGroup = (props: Props) => {
   const { currentCategory } = props
 
   const { data, isLoading, isError, images } = useDishes()
-  const { allergens, priceRange } = useFilters()
+  const { allergens, priceRange } = useFiltersStore()
 
   const filteredData =
     data &&

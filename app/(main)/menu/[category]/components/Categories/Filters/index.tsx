@@ -13,11 +13,12 @@ import {
 } from '@ui/dialog'
 import { Slider } from '@ui/slider'
 
-import useFilters from '@/hooks/use-filters'
+import useFiltersStore from '@/hooks/use-filters-store'
 import { Allergens, AllergensLabels } from '@/types/enums/allergens'
 
 const Filters = () => {
-  const { allergens, priceRange, setAllergens, setPriceRange } = useFilters()
+  const { allergens, priceRange, setAllergens, setPriceRange } =
+    useFiltersStore()
   const closeDialog = useRef<HTMLButtonElement>(null)
   const [selectedAllergens, setSelectedAllergens] =
     useState<Allergens[]>(allergens)

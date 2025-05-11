@@ -12,7 +12,7 @@ interface StoreActions {
   setPriceRange: (priceRange: number[]) => void
 }
 
-const useFilters = create<StoreState & StoreActions>((set) => ({
+const useFiltersStore = create<StoreState & StoreActions>((set) => ({
   allergens: [],
   priceRange: [0, 320],
 
@@ -20,4 +20,4 @@ const useFilters = create<StoreState & StoreActions>((set) => ({
   setPriceRange: (priceRange) => set({ priceRange })
 }))
 
-export default useFilters
+export default useFiltersStore

@@ -1,6 +1,7 @@
 'use client'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 
@@ -17,7 +18,7 @@ const useAuth = () => {
       await queryClient.invalidateQueries({ queryKey: ['user'] })
       router.push('/')
     },
-    onError: (error) => {
+    onError: (error: AxiosError) => {
       console.error('Auth error:', error)
     }
   })
@@ -29,7 +30,7 @@ const useAuth = () => {
       await queryClient.invalidateQueries({ queryKey: ['user'] })
       router.push('/')
     },
-    onError: (error) => {
+    onError: (error: AxiosError) => {
       console.error('Auth error:', error)
     }
   })

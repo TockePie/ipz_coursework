@@ -7,7 +7,12 @@ interface Props extends ComponentProps<'input'> {
   name: string
   customRegister?: {
     validate?: (value: string) => boolean | string
-    required?: string
+    required?:
+      | string
+      | {
+          value: boolean
+          message: string
+        }
   }
 }
 
@@ -41,6 +46,7 @@ const InputField = ({
       <Input
         type={type}
         defaultValue={defaultValue}
+        aria-invalid={errors[name] ? 'true' : 'false'}
         className="border-bright-cyan font-unbounded border bg-white py-6 font-light shadow-none"
         {...register(name, customRegister)}
         {...props}

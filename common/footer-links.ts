@@ -3,7 +3,7 @@ import GmailIcon from '@/components/Icons/socials/gmail-icon'
 import TelegramIcon from '@/components/Icons/socials/telegram-icon'
 
 const LINKS = [
-  { label: 'меню', href: '/menu' },
+  { label: 'меню', href: '/menu/main' },
   { label: 'мерч', href: '/menu/merch' },
   { label: 'про нас', href: '/#about' },
   { label: 'бронювання', href: '/#booking' },

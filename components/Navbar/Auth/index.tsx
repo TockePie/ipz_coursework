@@ -5,10 +5,10 @@ import { Button } from '@ui/button'
 import { CircleUserRound, LoaderCircle } from 'lucide-react'
 import Link from 'next/link'
 
-import useAuth from '@/hooks/use-auth'
+import useAuth from '@/hooks/api/use-auth'
+import useUserData from '@/hooks/api/use-user-data'
+import useUserStore from '@/hooks/store/use-user-store'
 import useClient from '@/hooks/use-client'
-import useUserData from '@/hooks/use-user-data'
-import useUserStore from '@/hooks/use-user-store'
 import Colors from '@/types/enums/colors'
 
 const Auth = () => {

@@ -4,7 +4,7 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 
 const MapPlaceholder = () => (
-  <div className="bg-light-coral h-[290px] w-full animate-pulse rounded-2xl" />
+  <div className="bg-coral/90 h-[290px] w-full animate-pulse rounded-2xl" />
 )
 
 const GoogleMapsContent = () => (

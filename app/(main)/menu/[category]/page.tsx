@@ -1,6 +1,6 @@
 import React from 'react'
 
-// import Banner from '@/components/main/Banner'
+import Banner from '@/components/main/Banner'
 import BlockSection from '@/components/main/BlockSection'
 import DishCategory from '@/types/enums/dish-category'
 
@@ -16,8 +16,7 @@ const MenuCategoryPage = async ({
 
   return (
     <main className="bg-cornsilk flex min-h-screen flex-col items-center gap-y-6 p-6">
-      {/* TODO: Add a banner component here */}
-      {/* <Banner /> */}
+      <Banner />
 
       <BlockSection title="Меню">
         <div className="mb-5 flex w-full flex-col gap-y-4">

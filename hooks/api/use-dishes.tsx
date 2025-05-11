@@ -16,7 +16,6 @@ const useDishes = () => {
     queries:
       query.data?.map((item) => ({
         queryKey: ['dish', item.id],
-        //TODO: use a better way to get the image url
         queryFn: () => getDishImage(item.image_url.split('/')[3]),
         refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 10 // 10 minutes

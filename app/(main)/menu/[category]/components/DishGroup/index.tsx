@@ -2,8 +2,8 @@
 
 import React from 'react'
 
-import useDishes from '@/hooks/use-dishes'
-import useFiltersStore from '@/hooks/use-filters-store'
+import useDishes from '@/hooks/api/use-dishes'
+import useFiltersStore from '@/hooks/store/use-filters-store'
 import DishCategory from '@/types/enums/dish-category'
 
 import DishCard from './DishCard'

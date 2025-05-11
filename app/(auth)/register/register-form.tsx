@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { RegisterCredentials } from '@/api/auth'
-import useAuth from '@/hooks/use-auth'
+import useAuth from '@/hooks/api/use-auth'
 
 import AuthForm from '../components/AuthPage/Form'
 

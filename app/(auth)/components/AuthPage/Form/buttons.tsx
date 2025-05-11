@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { LoaderCircle } from 'lucide-react'
 import Link from 'next/link'
 
-import useAuth from '@/hooks/use-auth'
+import useAuth from '@/hooks/api/use-auth'
 import Colors from '@/types/enums/colors'
 
 interface Props {

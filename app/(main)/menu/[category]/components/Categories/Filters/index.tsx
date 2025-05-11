@@ -13,7 +13,7 @@ import {
 } from '@ui/dialog'
 import { Slider } from '@ui/slider'
 
-import useFiltersStore from '@/hooks/use-filters-store'
+import useFiltersStore from '@/hooks/store/use-filters-store'
 import { Allergens, AllergensLabels } from '@/types/enums/allergens'
 
 const Filters = () => {

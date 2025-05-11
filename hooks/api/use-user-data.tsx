@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 
 import { getUser } from '@/api/auth'
 
-import useUserStore from './use-user-store'
+import useUserStore from '../store/use-user-store'
 
 const useUserData = () => {
   const { setUserInfo } = useUserStore()

@@ -10,11 +10,11 @@ import DishCategory from '@/types/enums/dish-category'
 import Filters from './Filters'
 
 interface Props {
-  currentCategory: DishCategory
+  currentCategory?: DishCategory
 }
 
 const Categories = (props: Props) => {
-  const { currentCategory } = props
+  const { currentCategory = 'main' } = props
 
   return (
     <ScrollArea className="h-12 w-full rounded-md">

@@ -20,7 +20,7 @@ const LoggedCard = () => {
   }
 
   return (
-    <div className="mt-5 flex items-center gap-3.5 rounded-3xl bg-white p-4 shadow-md">
+    <div className="mt-5 flex items-center justify-between gap-3.5 rounded-3xl bg-white p-4 shadow-md">
       <CircleUserRound color={Colors.CORAL} size="86" strokeWidth={1.5} />
 
       <div className="flex flex-col gap-2">

@@ -1,44 +1,46 @@
 import React from 'react'
 
+import Person from './Person'
+
+const INTRO_TEXT =
+  '<b>Bunnfee</b> – це не просто ресторан, а затишний куточок, де кожна страва наповнена теплом, турботою та натхненням. Ми створюємо атмосферу, що огортає комфортом, немов м&apos;які лапки кролика, а кожен відвідувач стає частиною нашої дружньої спільноти.'
+
 const AboutUs = () => (
-  <div className="flex flex-col items-center gap-4 overflow-hidden text-center">
-    <p className="font-unbounded text-md text-brown text-left lg:text-center">
-      <b>Bunnfee</b> – це не просто ресторан, а затишний куточок, де кожна
-      страва наповнена теплом, турботою та натхненням. Ми створюємо атмосферу,
-      що огортає комфортом, немов м&apos;які лапки кролика, а кожен відвідувач
-      стає частиною нашої дружньої спільноти.
-    </p>
+  <div className="flex flex-col items-center gap-8 text-center">
+    <p
+      className="font-unbounded text-md text-brown max-w-196 text-left lg:text-center"
+      dangerouslySetInnerHTML={{ __html: INTRO_TEXT }}
+    />
 
-    <div className="relative flex w-full items-center justify-center gap-3">
-      <img src="/vika.png" alt="Vika" className="ml-[-60px]" />
-      <div className="bg-mistyrose rounded-4xl p-4">
-        <p className="font-unbounded text-brown w-42 text-xs font-light">
-          За ідеєю та стилем Bunnfee стоїть <b>Пилипчук Вікторія</b>, яка
-          розробила унікальний дизайн, що поєднує естетику ніжності й сучасного
-          затишку.
-        </p>
-      </div>
-    </div>
+    <div className="flex flex-col gap-8">
+      <Person
+        name="Пилипчук Вікторія"
+        role="Design"
+        roleColor="text-coral"
+        imgSrc="/vika.png"
+        imgAlt="Victoria Pylypchuk"
+        quote="За ідеєю та стилем Bunnfee стою я, Пилипчук Вікторія. Я розробила унікальний дизайн, який поєднує в собі естетику ніжності та сучасного затишку."
+      />
 
-    <div className="relative flex w-full items-center justify-center gap-3">
-      <div className="bg-pale-turquoise rounded-4xl p-4">
-        <p className="font-unbounded text-brown w-42 text-xs font-light">
-          Завдяки <b>Максиму Крадожону</b> ресторан оживає у цифровому світі –
-          він відповідає за фронтенд-розробку, створюючи зручний інтерфейс для
-          гостей..
-        </p>
-      </div>
-      <img src="/maxim.png" alt="Maxim" className="mr-[-60px]" />
-    </div>
+      <Person
+        name="Крадожон Максим"
+        className="bg-pale-turquoise"
+        role="Frontend"
+        roleColor="text-moderate-orange"
+        imgSrc="/maxim.png"
+        imgAlt="Maxim Kradozhon"
+        quote="Завдяки мені, Максиму Крадожону, ресторан оживає у цифровому світі — я відповідаю за фронтенд-розробку та створюю зручний інтерфейс для гостей."
+      />
 
-    <div className="relative flex w-full items-center justify-center gap-3">
-      <img src="/kyrylo.png" alt="Kyrylo" className="ml-[-60px]" />
-      <div className="bg-light-goldenrod-yellow rounded-4xl p-4">
-        <p className="font-unbounded text-brown w-42 text-xs font-light">
-          А надійну роботу системи забезпечує <b>Кирило Лопушенко</b>, який
-          розробляє бекенд, щоб усе працювало бездоганно.
-        </p>
-      </div>
+      <Person
+        name="Лопушенко Кирило"
+        className="bg-light-goldenrod-yellow"
+        role="Backend"
+        roleColor="text-strong-cyan"
+        imgSrc="/pseudo-kyrylo.png"
+        imgAlt="Kyrylo Lopushenko"
+        quote="А надійну роботу системи забезпечую я, Кирило Лопушенко — розробляю бекенд, щоб усе працювало бездоганно та без збоїв."
+      />
     </div>
   </div>
 )

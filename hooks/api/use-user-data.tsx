@@ -14,9 +14,9 @@ const useUserData = () => {
 
   const query = useQuery({
     queryKey: ['user', user_id],
-    queryFn: () => {
-      if (!user_id) throw new Error('No user ID found')
-      return getUser(user_id)
+    queryFn: async () => {
+      if (!user_id) return null
+      return await getUser(user_id)
     },
     enabled: !!user_id
   })

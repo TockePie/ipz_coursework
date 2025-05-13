@@ -1,12 +1,19 @@
 'use client'
 
-import React, { FC } from 'react'
+import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import clsx from 'clsx'
+
+import { cn } from '@/lib/utils'
 
 import BackgroundPattern from './bg-pattern'
 
-const TileableBackground: FC<{ className?: string }> = ({ className }) => {
+interface Props {
+  className?: string
+}
+
+const TileableBackground = (props: Props) => {
+  const { className } = props
+
   const styles = {
     backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(
       renderToStaticMarkup(<BackgroundPattern />)
@@ -17,7 +24,7 @@ const TileableBackground: FC<{ className?: string }> = ({ className }) => {
 
   return (
     <div
-      className={clsx(
+      className={cn(
         'pointer-events-none fixed inset-0 z-[1] opacity-45',
         className
       )}

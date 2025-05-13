@@ -21,7 +21,6 @@ const LinkList = ({ title, links, className }: Props) => (
   <div className={clsx('mt-0 flex flex-col gap-4', className)}>
     <h2 className="font-unbounded text-brown text-2xl font-medium">{title}</h2>
 
-    {/* TODO: Fix jumping to top of the page when clicking on a link */}
     {links.map((link, index) => (
       <SheetClose key={index} asChild>
         <Link

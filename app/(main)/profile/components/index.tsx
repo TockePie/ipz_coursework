@@ -3,12 +3,13 @@
 import React, { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '@ui/button'
-import clsx from 'clsx'
+import { LoaderCircle } from 'lucide-react'
 
 import { PasswordReset } from '@/api/user'
 import useUpdateUser from '@/hooks/api/use-update-user'
 import useUserData from '@/hooks/api/use-user-data'
 import useUserStore from '@/hooks/store/use-user-store'
+import Colors from '@/types/enums/colors'
 
 import PasswordFields from './PasswordFields'
 import PersonalInfoFields from './PersonalInfoFields'
@@ -16,10 +17,10 @@ import SuccessDialog from './SuccessDialog'
 
 const ProfilePage = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
-  const { passwordReset, isLoading, isSuccess, error } = useUpdateUser()
-  const { userInfo } = useUserStore((state) => state)
   const methods = useForm<PasswordReset>()
   const { handleSubmit, setValue, reset } = methods
+  const { passwordReset, isLoading, isSuccess, error } = useUpdateUser()
+  const { userInfo } = useUserStore((state) => state)
   useUserData()
 
   useEffect(() => {
@@ -72,14 +73,19 @@ const ProfilePage = () => {
           )}
 
           <Button
-            className={clsx(
-              'bg-strong-cyan font-unbounded hover:bg-strong-cyan/80 active:bg-strong-cyan/70 h-12 w-56 text-base text-white shadow-none',
-              isLoading && 'cursor-not-allowed select-none'
-            )}
+            className="bg-strong-cyan font-unbounded hover:bg-strong-cyan/80 active:bg-strong-cyan/70 h-12 w-56 text-base text-white shadow-none"
             type="submit"
             disabled={isLoading}
           >
-            Застосувати
+            {isLoading ? (
+              <LoaderCircle
+                size={32}
+                className="animate-spin"
+                color={Colors.WHITE}
+              />
+            ) : (
+              'Застосувати'
+            )}
           </Button>
         </form>
 

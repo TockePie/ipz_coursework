@@ -16,7 +16,7 @@ const Banner = () => {
     if (!plugin) {
       setPlugin(
         Autoplay({
-          delay: 5000,
+          delay: 10000,
           stopOnInteraction: true,
           stopOnMouseEnter: true
         })

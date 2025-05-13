@@ -16,15 +16,17 @@ interface Props extends ComponentProps<'input'> {
   }
 }
 
-const InputField = ({
-  label,
-  type,
-  defaultValue,
-  name,
-  required = false,
-  customRegister,
-  ...props
-}: Props) => {
+const InputField = (inputProps: Props) => {
+  const {
+    label,
+    type,
+    defaultValue,
+    name,
+    required = false,
+    customRegister,
+    ...props
+  } = inputProps
+
   const {
     register,
     formState: { errors }

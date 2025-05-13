@@ -1,12 +1,13 @@
 'use client'
 
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import useDishes from '@/hooks/api/use-dishes'
 import useFiltersStore from '@/hooks/store/use-filters-store'
 import DishCategory from '@/types/enums/dish-category'
 
 import DishCard from './DishCard'
+import DishModal from './DishModal'
 
 interface Props {
   currentCategory: keyof typeof DishCategory
@@ -56,12 +57,18 @@ const DishGroup = (props: Props) => {
   return (
     <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 lg:gap-6">
       {filteredData?.map((item) => (
-        <DishCard
-          key={item.id}
-          item={item}
-          image={images.data?.[item.id]}
-          isLoading={images.isLoading}
-        />
+        <Fragment key={item.id}>
+          <DishCard
+            item={item}
+            image={images.data?.[item.id]}
+            isLoading={images.isLoading}
+          />
+          <DishModal
+            item={item}
+            image={images.data?.[item.id]}
+            isLoading={images.isLoading}
+          />
+        </Fragment>
       ))}
     </div>
   )

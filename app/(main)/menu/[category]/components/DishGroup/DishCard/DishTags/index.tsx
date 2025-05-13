@@ -1,19 +1,21 @@
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { Allergens, AllergensIcons } from '@/types/enums/allergens'
 
 interface Props {
   tags: string[]
+  className?: string
 }
 
 const DishTags = (props: Props) => {
-  const { tags } = props
+  const { tags, className } = props
   const filteredAllergens = tags
     .filter((tag) => Object.values(Allergens).includes(tag as Allergens))
     .sort()
 
   return (
-    <div className="absolute top-2.5 right-2.5 flex gap-2">
+    <div className={cn('absolute top-2.5 right-2.5 flex gap-2', className)}>
       {filteredAllergens.map((tag) => {
         const Icon = AllergensIcons[tag as Allergens]
 

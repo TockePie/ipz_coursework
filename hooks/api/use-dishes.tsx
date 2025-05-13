@@ -4,6 +4,15 @@ import { useQueries, useQuery } from '@tanstack/react-query'
 
 import { getDishes, getDishImage } from '@/api/dish'
 
+const useDishById = (id: string) => {
+  return useQuery({
+    queryKey: ['dish', id],
+    queryFn: () => getDishes(),
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
+}
+
 const useDishes = () => {
   const query = useQuery({
     queryKey: ['dishes'],
@@ -49,4 +58,5 @@ const useDishes = () => {
   }
 }
 
+export { useDishById }
 export default useDishes

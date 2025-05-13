@@ -7,6 +7,11 @@ const getDishes = async (): Promise<Dish[]> => {
   return data
 }
 
+const getDishById = async (id: number): Promise<Dish> => {
+  const { data } = await api.get(`/dishes/${id}/`)
+  return data
+}
+
 const getDishImage = async (id: number): Promise<string> => {
   const response = await imgApi.get<Blob>(`/${id}/`, {
     responseType: 'blob'
@@ -14,4 +19,4 @@ const getDishImage = async (id: number): Promise<string> => {
   return URL.createObjectURL(response.data)
 }
 
-export { getDishes, getDishImage }
+export { getDishById, getDishes, getDishImage }

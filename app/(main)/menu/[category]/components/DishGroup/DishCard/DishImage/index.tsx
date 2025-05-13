@@ -1,14 +1,18 @@
 import React from 'react'
 import Image from 'next/image'
 
+import { cn } from '@/lib/utils'
+
 interface Props {
   image: string | undefined
   name: string
   isLoading: boolean
+  className?: string
+  size?: number
 }
 
 const DishImage = (props: Props) => {
-  const { image, name, isLoading } = props
+  const { image, name, isLoading, className, size = 150 } = props
 
   if (isLoading) {
     return (
@@ -17,12 +21,18 @@ const DishImage = (props: Props) => {
   }
 
   return (
-    <div className="flex h-full max-h-36 w-full max-w-36 items-center justify-center">
+    <div
+      className={cn(
+        'flex h-full w-full items-center justify-center',
+        className
+      )}
+    >
       <Image
         src={image ?? '/fallback.png'}
         alt={name}
-        width={150}
-        height={150}
+        width={size}
+        height={size}
+        style={{ width: size, height: size }}
         className="rounded-xl object-cover transition duration-300"
       />
     </div>

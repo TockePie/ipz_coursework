@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 import { Dish } from '@/types/dish'
 
@@ -16,8 +17,17 @@ const DishCard = (props: Props) => {
   const { item, image, isLoading } = props
 
   return (
-    <div className="border-brown relative flex w-full items-center gap-3 rounded-2xl border bg-white p-3.5 shadow-lg lg:max-w-3xs lg:flex-col lg:gap-2.5">
-      <DishImage image={image} name={item.name} isLoading={isLoading} />
+    <Link
+      href={`?dish=${item.id}`}
+      scroll={false}
+      className="border-brown relative flex w-full items-center gap-3 rounded-2xl border bg-white p-3.5 shadow-lg lg:max-w-3xs lg:flex-col lg:gap-2.5"
+    >
+      <DishImage
+        image={image}
+        name={item.name}
+        isLoading={isLoading}
+        className="max-h-36 max-w-36"
+      />
 
       <div className="flex h-full w-full flex-col justify-between gap-3.5">
         <div className="flex w-8/12 flex-col lg:w-full">
@@ -43,7 +53,7 @@ const DishCard = (props: Props) => {
       </div>
 
       <DishTags tags={item.tags} />
-    </div>
+    </Link>
   )
 }
 

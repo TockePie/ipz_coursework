@@ -1,29 +1,62 @@
-import React from 'react'
-import { Button } from '@ui/button'
-import { ArrowRight } from 'lucide-react'
+'use client'
+
+import React, { useEffect, useRef, useState } from 'react'
+import { Carousel, CarouselContent, CarouselItem } from '@ui/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'
 
-const Banner = () => (
-  <div className="border-brown bg-mistyrose text-brown relative flex flex-col gap-4 rounded-3xl border-2 px-3 py-6">
-    <h1 className="text-xl font-bold">Смаковий вибух</h1>
-    <h4 className="font-unbounded z-10 max-w-[55%] font-light">
-      Соковитий бургер з м&apos;ясом, карамелізованими овочами подарує справжній
-      вибух смаку.
-    </h4>
-    <p className="font-unbounded text-lg font-bold text-red-500">125 ₴</p>
+import { useBanner } from '@/hooks/api/use-banner'
 
-    <Button className="bg-strong-cyan font-unbounded absolute right-3 bottom-3 flex px-5 py-6 text-lg text-white">
-      Спробувати
-      <ArrowRight size={36} />
-    </Button>
-    <Image
-      className="absolute top-10 right-2"
-      width={180}
-      height={160}
-      src="/burger-banner.png"
-      alt="burger"
-    />
-  </div>
-)
+const Banner = () => {
+  const [plugin, setPlugin] = useState<any>(null)
+  const emblaRef = useRef(null)
+  const { images } = useBanner()
+
+  useEffect(() => {
+    if (!plugin) {
+      setPlugin(
+        Autoplay({
+          delay: 5000,
+          stopOnInteraction: true,
+          stopOnMouseEnter: true
+        })
+      )
+    }
+  }, [plugin])
+
+  if (images.isLoading) {
+    return (
+      <div className="border-brown bg-mistyrose text-brown flex h-[160px] w-full animate-pulse items-center justify-center rounded-3xl border-2">
+        <p>Loading...</p>
+      </div>
+    )
+  }
+
+  return (
+    <div ref={emblaRef} className="mb-4 ml-2 flex justify-center">
+      <Carousel
+        plugins={plugin ? [plugin] : []}
+        opts={{ loop: true }}
+        className="w-full"
+      >
+        <CarouselContent className="w-full max-w-2xl lg:max-w-5xl">
+          {images.data &&
+            Object.values(images.data).map((image, index) => (
+              <CarouselItem key={index} className="flex justify-center">
+                <Image
+                  width={1000}
+                  height={160}
+                  src={image || ''}
+                  alt="banner"
+                  className="border-brown bg-mistyrose text-brown mx-auto rounded-3xl border-2 object-cover"
+                  style={{ maxWidth: '100%', height: 'auto' }}
+                />
+              </CarouselItem>
+            ))}
+        </CarouselContent>
+      </Carousel>
+    </div>
+  )
+}
 
 export default Banner

@@ -10,7 +10,7 @@ import DishGroup from './components/DishGroup'
 const MenuCategoryPage = async ({
   params
 }: {
-  params: Promise<{ category: DishCategory }>
+  params: { category: DishCategory }
 }) => {
   const { category } = await params
   const currentCategory = (category as keyof typeof DishGroup) || 'main'

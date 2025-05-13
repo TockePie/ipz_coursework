@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '@ui/button'
-import { LoaderCircle } from 'lucide-react'
 
 import { PasswordReset } from '@/api/user'
+import Spinner from '@/components/Spinner'
 import useUpdateUser from '@/hooks/api/use-update-user'
 import useUserData from '@/hooks/api/use-user-data'
 import useUserStore from '@/hooks/store/use-user-store'
@@ -77,15 +77,7 @@ const ProfilePage = () => {
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? (
-              <LoaderCircle
-                size={32}
-                className="animate-spin"
-                color={Colors.WHITE}
-              />
-            ) : (
-              'Застосувати'
-            )}
+            {isLoading ? <Spinner color={Colors.WHITE} /> : 'Застосувати'}
           </Button>
         </form>
 

@@ -42,16 +42,17 @@ const PeopleInput = () => {
       >
         <Minus color={Colors.BROWN} size={32} />
       </Button>
+
       <Input
         className="bg-mistyrose font-unbounded h-12 w-24 rounded-2xl border border-black text-center shadow-none"
         type="number"
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         onWheel={(e) => (e.target as HTMLInputElement).blur()}
-        defaultValue={1}
         min={1}
         max={8}
       />
+
       <Button
         size="icon"
         className="bg-light-coral hover:bg-light-coral/90 active:bg-light-coral/70 border-brown h-14 w-14 rounded-full border shadow-none"

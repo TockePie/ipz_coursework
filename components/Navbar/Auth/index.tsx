@@ -2,9 +2,10 @@
 
 import React from 'react'
 import { Button } from '@ui/button'
-import { CircleUserRound, LoaderCircle } from 'lucide-react'
+import { CircleUserRound } from 'lucide-react'
 import Link from 'next/link'
 
+import Spinner from '@/components/Spinner'
 import useAuth from '@/hooks/api/use-auth'
 import useUserData from '@/hooks/api/use-user-data'
 import useUserStore from '@/hooks/store/use-user-store'
@@ -17,15 +18,7 @@ const Auth = () => {
   const isClient = useClient()
   useUserData()
 
-  if (!isClient) {
-    return (
-      <LoaderCircle
-        size={32}
-        className="animate-spin"
-        color={Colors.CORNSILK}
-      />
-    )
-  }
+  if (!isClient) return <Spinner />
 
   if (isAuthenticated()) {
     return (

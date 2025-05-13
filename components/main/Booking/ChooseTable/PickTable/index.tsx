@@ -1,13 +1,14 @@
 import React from 'react'
 
-import Table from './Table'
+import TableCard from './TableCard'
 
-const PickTable = () => (
-  <div className="bg-mistyrose flex w-full flex-col gap-5 rounded-3xl p-3">
-    <div className="flex gap-4">
-      <Table number={1} />
+const PickTable = () => {
+  return (
+    <div className="grid w-full max-w-2xl grid-cols-1 justify-items-center gap-4 lg:max-w-5xl lg:grid-cols-2">
+      <TableCard number={1} people={2} is_available />
+      <TableCard number={2} people={4} />
     </div>
-  </div>
-)
+  )
+}
 
 export default PickTable

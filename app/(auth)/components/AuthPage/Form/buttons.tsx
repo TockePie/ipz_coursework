@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from '@ui/button'
 import clsx from 'clsx'
-import { LoaderCircle } from 'lucide-react'
 import Link from 'next/link'
 
+import Spinner from '@/components/Spinner'
 import useAuth from '@/hooks/api/use-auth'
 import Colors from '@/types/enums/colors'
 
@@ -28,13 +28,7 @@ const Buttons = (props: Props) => {
         disabled={isLoading}
         type="submit"
       >
-        {isLoading && (
-          <LoaderCircle
-            size={32}
-            className="animate-spin"
-            color={Colors.WHITE}
-          />
-        )}
+        {isLoading && <Spinner color={Colors.WHITE} />}
         {firstBtnText}
       </Button>
 

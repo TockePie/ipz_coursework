@@ -5,12 +5,14 @@ import { Carousel, CarouselContent, CarouselItem } from '@ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'
 
+import Spinner from '@/components/Spinner'
 import { useBanner } from '@/hooks/api/use-banner'
+import Colors from '@/types/enums/colors'
 
 const Banner = () => {
   const [plugin, setPlugin] = useState<any>(null)
   const emblaRef = useRef(null)
-  const { images } = useBanner()
+  const { query, images } = useBanner()
 
   useEffect(() => {
     if (!plugin) {
@@ -24,10 +26,19 @@ const Banner = () => {
     }
   }, [plugin])
 
-  if (images.isLoading) {
+  if (query.isLoading) {
     return (
-      <div className="border-brown bg-mistyrose text-brown flex h-[160px] w-full animate-pulse items-center justify-center rounded-3xl border-2">
-        <p>Loading...</p>
+      <div className="border-brown bg-mistyrose text-brown flex h-56 w-full max-w-2xl items-center justify-center gap-3 rounded-3xl border-2 lg:h-96 lg:max-w-5xl">
+        <Spinner color={Colors.BROWN} />
+        <p className="font-unbounded">Завантаження</p>
+      </div>
+    )
+  }
+
+  if (query.isError) {
+    return (
+      <div className="border-brown text-brown flex h-56 w-full max-w-2xl items-center justify-center rounded-3xl border-2 bg-red-300 lg:h-96 lg:max-w-5xl">
+        <p className="font-unbounded">{query.error.message}</p>
       </div>
     )
   }

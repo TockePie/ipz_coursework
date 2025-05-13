@@ -40,16 +40,8 @@ const useBanner = () => {
   })
 
   return {
-    query: {
-      data: query.data,
-      isLoading: query.isLoading,
-      isError: query.isError
-    },
-    images: {
-      data: images.data,
-      isLoading: images.isLoading,
-      isError: images.isError
-    }
+    query,
+    images
   }
 }
 

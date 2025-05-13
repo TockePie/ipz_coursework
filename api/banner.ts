@@ -2,7 +2,7 @@ import { Banner } from '@/types/banner'
 
 import { api, imgApi } from './instance'
 
-const getBanners = async (): Promise<Banner> => {
+const getBanners = async (): Promise<Banner[]> => {
   const { data } = await api.get('/news')
 
   return data

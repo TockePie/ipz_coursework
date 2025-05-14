@@ -16,6 +16,8 @@ const useBanner = () => {
     queries:
       (Array.isArray(query.data) ? query.data : [])?.map((item) => ({
         queryKey: ['banner', item.id],
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         queryFn: () => getBannerImage(item.image_url.split('/')[3]),
         refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 10 // 10 minutes

@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 
 import { SheetClose } from '@/components/ui/sheet'
+import { cn } from '@/lib/utils'
 
 type LinkItem = {
   href: string
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const LinkList = ({ title, links, className }: Props) => (
-  <div className={clsx('mt-0 flex flex-col gap-4', className)}>
+  <div className={cn('mt-0 flex flex-col gap-4', className)}>
     <h2 className="font-unbounded text-brown text-2xl font-medium">{title}</h2>
 
     {links.map((link, index) => (

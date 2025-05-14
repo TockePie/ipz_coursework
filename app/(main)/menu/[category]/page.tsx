@@ -10,10 +10,11 @@ import DishGroup from './components/DishGroup'
 const MenuCategoryPage = async ({
   params
 }: {
-  params: { category: DishCategory }
+  params: Promise<{ category: string }>
 }) => {
   const { category } = await params
-  const currentCategory = (category as keyof typeof DishGroup) || 'main'
+  const currentCategory = (category as keyof typeof DishCategory) || 'main'
+  const dishCategory = DishCategory[currentCategory]
 
   return (
     <main className="bg-cornsilk flex min-h-screen flex-col items-center gap-y-6 p-6">
@@ -21,7 +22,7 @@ const MenuCategoryPage = async ({
 
       <BlockSection title="Меню">
         <div className="mb-5 flex w-full flex-col gap-y-4">
-          <Categories currentCategory={currentCategory} />
+          <Categories currentCategory={dishCategory} />
           <DishGroup currentCategory={currentCategory} />
         </div>
       </BlockSection>

@@ -25,6 +25,8 @@ const useDishes = () => {
     queries:
       query.data?.map((item) => ({
         queryKey: ['dish', item.id],
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         queryFn: () => getDishImage(item.image_url.split('/')[3]),
         refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 10 // 10 minutes

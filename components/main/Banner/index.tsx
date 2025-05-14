@@ -57,7 +57,7 @@ const Banner = () => {
                 <Image
                   width={1000}
                   height={160}
-                  src={image || ''}
+                  src={image ?? '/fallback.png'}
                   alt="banner"
                   className="border-brown bg-mistyrose text-brown mx-auto rounded-3xl border-2 object-cover"
                   style={{ maxWidth: '100%', height: 'auto' }}

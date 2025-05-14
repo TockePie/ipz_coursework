@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { AxiosError } from 'axios'
 
 import { RegisterCredentials } from '@/api/auth'
 import useAuth from '@/hooks/api/use-auth'
@@ -17,7 +18,7 @@ const RegisterForm = () => {
       title="Зареєструватися"
       inputs={REGISTER_INPUTS}
       onSubmitHandler={register}
-      error={error}
+      error={error as AxiosError}
       firstBtnText="Зареєструватися"
       secondBtnText="Увійти"
       secondaryBtnRoute="login"

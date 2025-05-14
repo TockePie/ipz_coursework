@@ -26,7 +26,7 @@ const AboutUs = () => (
         name="Крадожон Максим"
         className="bg-pale-turquoise"
         role="Frontend"
-        roleColor="text-moderate-orange"
+        roleColor="text-pale"
         imgSrc="/maxim.png"
         imgAlt="Maxim Kradozhon"
         quote="Завдяки мені, Максиму Крадожону, ресторан оживає у цифровому світі — я відповідаю за фронтенд-розробку та створюю зручний інтерфейс для гостей."

@@ -8,7 +8,6 @@ import {
   useForm
 } from 'react-hook-form'
 import { AxiosError } from 'axios'
-import Link from 'next/link'
 
 import Buttons from '@/app/(auth)/components/AuthPage/Form/buttons'
 import Fields from '@/app/(auth)/components/AuthPage/Form/fields'
@@ -37,7 +36,6 @@ function AuthForm<T extends FieldValues>(props: AuthFormProps<T>) {
   const methods = useForm<T>()
   const { handleSubmit } = methods
 
-  //TODO: add forgot password modal
   return (
     <FormProvider {...methods}>
       <form
@@ -47,14 +45,14 @@ function AuthForm<T extends FieldValues>(props: AuthFormProps<T>) {
         <p className="font-unbounded text-brown text-2xl font-bold">{title}</p>
         <Fields INPUTS={inputs} />
 
-        {title === 'Увійти' && (
+        {/* {title === 'Увійти' && (
           <Link
             href="/reset-password"
             className="text-brown font-unbounded text-sm font-light underline"
           >
             Забули пароль
           </Link>
-        )}
+        )} */}
 
         {(error as ReactNode) && (
           <p className="mt-1 text-sm text-red-500">

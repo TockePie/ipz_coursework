@@ -1,7 +1,7 @@
 import React from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
+import { Controller, useFormContext, useWatch } from 'react-hook-form'
 
-import { FormValues } from '../form-values'
+import { FormValues } from '@/types/form-values'
 
 import PeopleInput from './PeopleInput'
 import PickTable from './PickTable'
@@ -22,10 +22,15 @@ const ChooseTable = () => {
       <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
         <h5 className="lg:hidden">Кількість присутніх</h5>
         <h5 className="hidden lg:inline">Скільки людей буде за столом?</h5>
+
         <PeopleInput />
       </div>
 
-      <PickTable />
+      <Controller
+        control={control}
+        name="table"
+        render={({ field }) => <PickTable field={field} />}
+      />
     </div>
   )
 }

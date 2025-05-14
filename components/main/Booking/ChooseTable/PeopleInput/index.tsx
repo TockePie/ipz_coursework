@@ -5,12 +5,10 @@ import { Input } from '@ui/input'
 import { Minus, Plus } from 'lucide-react'
 
 import Colors from '@/types/enums/colors'
-
-import { FormValues } from '../../form-values'
+import { FormValues } from '@/types/form-values'
 
 const PeopleInput = () => {
   const { control } = useFormContext<FormValues>()
-
   const {
     field: { value, onChange }
   } = useController({

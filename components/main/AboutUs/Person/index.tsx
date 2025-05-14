@@ -8,7 +8,7 @@ interface Props {
   className?: string
   name: string
   role: string
-  roleColor?: 'text-strong-cyan' | 'text-coral' | 'text-moderate-orange'
+  roleColor?: 'text-strong-cyan' | 'text-coral' | 'text-pale'
   imgSrc?: string
   imgAlt: string
   quote: string

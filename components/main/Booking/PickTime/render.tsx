@@ -3,7 +3,7 @@ import { ControllerRenderProps } from 'react-hook-form'
 import { Button } from '@ui/button'
 import clsx from 'clsx'
 
-import { FormValues } from '../form-values'
+import { FormValues } from '@/types/form-values'
 
 import TIMES from './times'
 
@@ -18,6 +18,7 @@ const RenderComp = ({ field }: Props) => (
     {TIMES.map((time, index) => (
       <Button
         key={index}
+        type="button"
         onClick={() => field.onChange(time.timeFrom)}
         className={clsx(
           'font-unbounded text-brown bg-mistyrose text-md active:bg-mistyrose/80 hover:bg-mistyrose/90 px-5 py-7 font-light',

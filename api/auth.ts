@@ -1,6 +1,7 @@
 import {
   LoginCredentials,
   LoginResponse,
+  PasswordReset,
   RegisterCredentials,
   User
 } from '@/types/auth'
@@ -22,11 +23,26 @@ const getUser = async (user_id: string): Promise<User> => {
   return data
 }
 
-export {
-  getUser,
-  login,
-  type LoginCredentials,
-  register,
-  type RegisterCredentials,
-  type User
+const passwordReset = async (props: PasswordReset) => {
+  const {
+    first_name,
+    last_name,
+    phone_number,
+    old_password,
+    new_password,
+    new_password_repeat
+  } = props
+
+  const { data } = await api.post('/users/passwordresetclassic', {
+    first_name,
+    last_name,
+    phone_number,
+    old_password,
+    new_password,
+    new_password_repeat
+  })
+
+  return data
 }
+
+export { getUser, login, passwordReset, register }

@@ -12,35 +12,31 @@ interface Props {
   currentCategory?: keyof typeof DishCategory
 }
 
-const Categories = (props: Props) => {
-  const { currentCategory = 'main' } = props
+const Categories = ({ currentCategory = 'main' }: Props) => (
+  <ScrollArea className="h-12 w-full rounded-md">
+    <div className="flex w-max gap-2">
+      <Filters />
 
-  return (
-    <ScrollArea className="h-12 w-full rounded-md">
-      <div className="flex w-max gap-2">
-        <Filters />
+      {MENU_LINKS.map((link, index) => (
+        <Button
+          key={index}
+          variant={currentCategory === link.routeName ? 'secondary' : 'ghost'}
+          color={
+            currentCategory === link.routeName
+              ? 'light-goldenrod-yellow'
+              : 'brown'
+          }
+          asChild
+        >
+          <Link href={link.href} scroll={false}>
+            {link.label}
+          </Link>
+        </Button>
+      ))}
+    </div>
 
-        {MENU_LINKS.map((link, index) => (
-          <Button
-            key={index}
-            variant={currentCategory === link.routeName ? 'secondary' : 'ghost'}
-            color={
-              currentCategory === link.routeName
-                ? 'light-goldenrod-yellow'
-                : 'brown'
-            }
-            asChild
-          >
-            <Link href={link.href} scroll={false}>
-              {link.label}
-            </Link>
-          </Button>
-        ))}
-      </div>
-
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
-  )
-}
+    <ScrollBar orientation="horizontal" />
+  </ScrollArea>
+)
 
 export default Categories

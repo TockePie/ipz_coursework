@@ -1,14 +1,12 @@
-// ProfilePage.tsx
 'use client'
 
 import React, { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { PasswordReset } from '@/api/user'
-import useAuth from '@/hooks/api/use-auth'
 import useUpdateUser from '@/hooks/api/use-update-user'
 import useUserData from '@/hooks/api/use-user-data'
 import useUserStore from '@/hooks/store/use-user-store'
+import { PasswordReset } from '@/types/auth'
 
 import ProfileForm from './ProfileForm'
 import SuccessDialog from './SuccessDialog'
@@ -18,7 +16,6 @@ const ProfilePage = () => {
   const methods = useForm<PasswordReset>()
   const { reset, setValue } = methods
 
-  const { logout } = useAuth()
   const { passwordReset, isLoading, isSuccess, error } = useUpdateUser()
   const { userInfo } = useUserStore((state) => state)
 
@@ -51,16 +48,10 @@ const ProfilePage = () => {
     passwordReset(formData)
   }
 
-  const handleLogOut = async () => {
-    await logout()
-    window.location.reload()
-  }
-
   return (
     <FormProvider {...methods}>
       <ProfileForm
         onSubmit={handleSubmit}
-        onLogout={handleLogOut}
         error={error}
         isLoading={isLoading}
       />

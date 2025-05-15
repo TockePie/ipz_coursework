@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 
-import { postReservation } from '@/api/reservation'
-import { getTables } from '@/api/table'
+import { getTables, postReservation } from '@/api/reservation'
 
 const useReservation = () => {
   const query = useMutation({

@@ -3,8 +3,8 @@
 import React from 'react'
 import { AxiosError } from 'axios'
 
-import { RegisterCredentials } from '@/api/auth'
 import useAuth from '@/hooks/api/use-auth'
+import { RegisterCredentials } from '@/types/auth'
 
 import AuthForm from '../components/AuthPage/Form'
 

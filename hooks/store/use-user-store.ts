@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 
-import { User } from '@/api/auth'
-
+import { User } from '@/types/auth'
 interface StoreState {
   userInfo: User | null
 }

@@ -1,11 +1,11 @@
-// ProfileForm.tsx
 import React from 'react'
 import { SubmitHandler, useFormContext } from 'react-hook-form'
 import { Button } from '@ui/button'
 import { AxiosError } from 'axios'
 
-import { PasswordReset } from '@/api/user'
 import Spinner from '@/components/Spinner'
+import useAuth from '@/hooks/api/use-auth'
+import { PasswordReset } from '@/types/auth'
 import Colors from '@/types/enums/colors'
 
 import PasswordFields from './PasswordFields'
@@ -13,13 +13,18 @@ import PersonalInfoFields from './PersonalInfoFields'
 
 interface Props {
   onSubmit: SubmitHandler<PasswordReset>
-  onLogout: () => void
   isLoading: boolean
   error?: AxiosError<unknown, any> | null
 }
 
-const ProfileForm = ({ onSubmit, onLogout, isLoading, error }: Props) => {
+const ProfileForm = ({ onSubmit, isLoading, error }: Props) => {
   const { handleSubmit } = useFormContext<PasswordReset>()
+  const { logout } = useAuth()
+
+  const handleLogOut = async () => {
+    await logout()
+    window.location.reload()
+  }
 
   return (
     <main className="bg-cornsilk p-6">
@@ -29,7 +34,7 @@ const ProfileForm = ({ onSubmit, onLogout, isLoading, error }: Props) => {
       >
         <h1>Змінити дані</h1>
 
-        <Button onClick={onLogout} variant="outline" size="lg">
+        <Button onClick={handleLogOut} variant="outline" size="lg">
           Вийти з акаунту
         </Button>
 

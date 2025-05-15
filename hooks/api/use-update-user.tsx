@@ -3,7 +3,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
-import { passwordReset } from '@/api/user'
+import { passwordReset } from '@/api/auth'
 
 const useUpdateUser = () => {
   const queryClient = useQueryClient()

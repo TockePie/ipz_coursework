@@ -37,7 +37,7 @@ const AboutUs = () => (
         className="bg-light-goldenrod-yellow"
         role="Backend"
         roleColor="text-strong-cyan"
-        imgSrc="/pseudo-kyrylo.png"
+        imgSrc="/kyrylo.png"
         imgAlt="Kyrylo Lopushenko"
         quote="А надійну роботу системи забезпечую я, Кирило Лопушенко — розробляю бекенд, щоб усе працювало бездоганно та без збоїв."
       />

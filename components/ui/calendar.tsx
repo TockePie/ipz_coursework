@@ -22,11 +22,11 @@ function Calendar({
         months: 'flex flex-col sm:flex-row gap-2',
         month: 'flex flex-col gap-4',
         caption: 'flex justify-center pt-1 relative items-center w-full',
-        caption_label: 'text-md font-medium  text-brown',
+        caption_label: 'text-md font-medium text-brown',
         nav: 'flex items-center gap-1',
         nav_button: cn(
-          buttonVariants({ variant: 'outline' }),
-          'size-7 bg-transparent p-0 text-brown  shadow-none'
+          buttonVariants({ variant: 'ghost', color: 'brown' }),
+          'size-7 bg-transparent p-0 text-brown shadow-none'
         ),
         nav_button_previous: 'absolute left-1',
         nav_button_next: 'absolute right-1',
@@ -36,23 +36,24 @@ function Calendar({
           'text-muted-foreground rounded-md w-8 font-normal text-[0.8rem]',
         row: 'flex w-full mt-2',
         cell: cn(
-          'relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-range-end)]:rounded-r-sm',
+          'relative p-0 text-center text-sm focus-within:relative focus-within:z-20',
           props.mode === 'range'
             ? '[&:has(>.day-range-end)]:rounded-r-sm [&:has(>.day-range-start)]:rounded-l-sm first:[&:has([aria-selected])]:rounded-l-sm last:[&:has([aria-selected])]:rounded-r-sm'
-            : '[&:has([aria-selected])]:rounded-sm'
+            : '[&:has([aria-selected])]:rounded-full'
         ),
         day: cn(
-          buttonVariants({ variant: 'ghost' }),
+          buttonVariants({ variant: 'ghost', color: 'brown' }),
           'size-8 p-0 text-brown font-normal aria-selected:opacity-100'
         ),
         day_range_start:
           'day-range-start aria-selected:bg-primary aria-selected:text-primary-foreground',
         day_range_end:
           'day-range-end aria-selected:bg-primary aria-selected:text-primary-foreground',
-        day_selected: 'bg-primary text-cornsilk rounded-sm',
-        day_today: 'bg-accent text-accent-foreground',
+        day_selected:
+          'bg-brown text-cornsilk hover:bg-brown hover:text-cornsilk focus:bg-brown focus:text-cornsilk rounded-full !important',
+        day_today: 'bg-accent text-brown',
         day_outside:
-          'day-outside text-muted-foreground/50 aria-selected:text-muted-foreground',
+          'day-outside text-muted-foreground/50 aria-selected:text-cornsilk',
         day_disabled: 'text-muted-foreground opacity-50',
         day_range_middle:
           'aria-selected:bg-accent aria-selected:text-accent-foreground',

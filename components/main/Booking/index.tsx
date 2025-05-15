@@ -96,11 +96,7 @@ const Booking = () => {
 
         <div className="flex w-full flex-col items-center justify-center">
           {table && (
-            <Button
-              type="button"
-              onClick={() => setOpenModal(true)}
-              className="bg-strong-cyan font-unbounded hover:bg-strong-cyan/80 active:bg-strong-cyan/70 h-12 w-56 text-lg text-white shadow-none"
-            >
+            <Button type="button" onClick={() => setOpenModal(true)} size="xl">
               Забронювати
             </Button>
           )}

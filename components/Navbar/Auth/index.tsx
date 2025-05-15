@@ -33,7 +33,7 @@ const Auth = () => {
 
   return (
     <>
-      <Button asChild>
+      <Button color="cornsilk" asChild>
         <Link href="/login">Увійти</Link>
       </Button>
 

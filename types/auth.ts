@@ -8,7 +8,8 @@ interface RegisterCredentials extends LoginCredentials {
   last_name: string
 }
 
-interface AuthResponse {
+interface LoginResponse {
+  message: string
   user_id: string
 }
 
@@ -20,4 +21,4 @@ interface User {
   is_admin: boolean
 }
 
-export type { AuthResponse, LoginCredentials, RegisterCredentials, User }
+export type { LoginCredentials, LoginResponse, RegisterCredentials, User }

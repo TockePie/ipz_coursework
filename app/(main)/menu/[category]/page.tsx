@@ -14,7 +14,6 @@ const MenuCategoryPage = async ({
 }) => {
   const { category } = await params
   const currentCategory = (category as keyof typeof DishCategory) || 'main'
-  const dishCategory = DishCategory[currentCategory]
 
   return (
     <main className="bg-cornsilk flex min-h-screen flex-col items-center gap-y-6 p-6">
@@ -22,7 +21,7 @@ const MenuCategoryPage = async ({
 
       <BlockSection title="Меню">
         <div className="mb-5 flex w-full flex-col gap-y-4">
-          <Categories currentCategory={dishCategory} />
+          <Categories currentCategory={currentCategory} />
           <DishGroup currentCategory={currentCategory} />
         </div>
       </BlockSection>

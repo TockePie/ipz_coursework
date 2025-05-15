@@ -36,7 +36,8 @@ const useBanner = () => {
       return {
         data: dataMap,
         isLoading: results.some((result) => result.isLoading),
-        isError: results.some((result) => result.isError)
+        isError: results.some((result) => result.isError),
+        error: results.find((result) => result.isError)?.error
       }
     }
   })

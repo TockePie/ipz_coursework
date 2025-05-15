@@ -13,7 +13,7 @@ const WeAreHere = () => (
   >
     <div className="flex items-center justify-center gap-3 lg:justify-start">
       <MapPinIcon />
-      <h5 className="text-cornsilk">
+      <h5 className="text-cornsilk cursor-default">
         КПІ імені Сікорського
         <br />
         корпус 18

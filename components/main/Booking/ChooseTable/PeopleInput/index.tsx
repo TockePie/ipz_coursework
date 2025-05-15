@@ -33,7 +33,7 @@ const PeopleInput = () => {
     <div className="flex items-center justify-center gap-4">
       <Button
         size="icon"
-        className="bg-light-coral hover:bg-light-coral/90 active:bg-light-coral/70 border-brown h-14 w-14 rounded-full border shadow-none"
+        color="light-coral"
         onClick={handleDecrement}
         type="button"
         disabled={value <= 1}
@@ -53,7 +53,7 @@ const PeopleInput = () => {
 
       <Button
         size="icon"
-        className="bg-light-coral hover:bg-light-coral/90 active:bg-light-coral/70 border-brown h-14 w-14 rounded-full border shadow-none"
+        color="light-coral"
         onClick={handleIncrement}
         type="button"
         disabled={value >= 8}

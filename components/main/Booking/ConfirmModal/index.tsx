@@ -38,19 +38,10 @@ const ConfirmModal = (props: Props) => {
         <DataContainer />
 
         <DialogFooter>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onClose}
-            className="border-strong-cyan font-unbounded text-strong-cyan hover:bg-strong-cyan/10 hover:text-strong-cyan h-10 bg-transparent shadow-none"
-          >
+          <Button type="button" variant="outline" onClick={onClose} size="lg">
             Скасувати
           </Button>
-          <Button
-            className="bg-strong-cyan font-unbounded hover:bg-strong-cyan/80 active:bg-strong-cyan/70 h-10 text-white shadow-none"
-            type="submit"
-            form="booking-form"
-          >
+          <Button type="submit" form="booking-form" size="lg">
             Підтвердити
           </Button>
         </DialogFooter>

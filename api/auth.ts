@@ -1,20 +1,18 @@
 import {
-  AuthResponse,
   LoginCredentials,
+  LoginResponse,
   RegisterCredentials,
   User
 } from '@/types/auth'
 
 import { api } from './instance'
 
-const login = async (credentials: LoginCredentials): Promise<AuthResponse> => {
+const login = async (credentials: LoginCredentials): Promise<LoginResponse> => {
   const { data } = await api.post('/users/login', credentials)
   return data
 }
 
-const register = async (
-  credentials: RegisterCredentials
-): Promise<AuthResponse> => {
+const register = async (credentials: RegisterCredentials): Promise<User> => {
   const { data } = await api.post('/users/register', credentials)
   return data
 }

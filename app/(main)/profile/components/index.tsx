@@ -6,6 +6,7 @@ import { Button } from '@ui/button'
 
 import { PasswordReset } from '@/api/user'
 import Spinner from '@/components/Spinner'
+import useAuth from '@/hooks/api/use-auth'
 import useUpdateUser from '@/hooks/api/use-update-user'
 import useUserData from '@/hooks/api/use-user-data'
 import useUserStore from '@/hooks/store/use-user-store'
@@ -19,6 +20,8 @@ const ProfilePage = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const methods = useForm<PasswordReset>()
   const { handleSubmit, setValue, reset } = methods
+
+  const { logout } = useAuth()
   const { passwordReset, isLoading, isSuccess, error } = useUpdateUser()
   const { userInfo } = useUserStore((state) => state)
   useUserData()
@@ -50,6 +53,11 @@ const ProfilePage = () => {
     passwordReset(formData)
   }
 
+  const handleLogOut = async () => {
+    await logout()
+    window.location.reload()
+  }
+
   return (
     <FormProvider {...methods}>
       <main className="bg-cornsilk p-6">
@@ -58,6 +66,10 @@ const ProfilePage = () => {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <h1>Змінити дані</h1>
+
+          <Button onClick={handleLogOut} variant="outline" size="lg">
+            Вийти з акаунту
+          </Button>
 
           <PersonalInfoFields />
           <hr className="border-brown w-full" />
@@ -72,11 +84,7 @@ const ProfilePage = () => {
             </p>
           )}
 
-          <Button
-            className="bg-strong-cyan font-unbounded hover:bg-strong-cyan/80 active:bg-strong-cyan/70 h-12 w-56 text-base text-white shadow-none"
-            type="submit"
-            disabled={isLoading}
-          >
+          <Button size="xl" type="submit" disabled={isLoading}>
             {isLoading ? <Spinner color={Colors.WHITE} /> : 'Застосувати'}
           </Button>
         </form>

@@ -5,7 +5,7 @@ import Colors from '@/types/enums/colors'
 
 const BrandSection = () => (
   <div className="mx-auto flex max-w-3xl flex-col items-center gap-9 lg:flex-col-reverse">
-    <h4 className="text-cornsilk text-center text-[0.875rem] lg:text-base">
+    <h4 className="text-cornsilk cursor-default text-center text-[0.875rem] lg:text-base">
       Ми віримо, що Bunnfee стане для тебе місцем, куди хочеться повертатися
       знову і знову.
     </h4>

@@ -12,7 +12,7 @@ import Colors from '@/types/enums/colors'
 const Banner = () => {
   const [plugin, setPlugin] = useState<any>(null)
   const emblaRef = useRef(null)
-  const { query, images } = useBanner()
+  const { images, query } = useBanner()
 
   useEffect(() => {
     if (!plugin) {
@@ -26,25 +26,27 @@ const Banner = () => {
     }
   }, [plugin])
 
-  if (query.isLoading) {
+  if (images.isLoading || query.isLoading) {
     return (
-      <div className="border-brown bg-mistyrose text-brown flex h-56 w-full max-w-2xl items-center justify-center gap-3 rounded-3xl border-2 lg:h-96 lg:max-w-5xl">
+      <div className="border-brown bg-mistyrose text-brown flex h-56 w-full max-w-2xl items-center justify-center gap-3 rounded-3xl border-2 sm:max-h-46 md:max-h-96 lg:h-96 lg:max-h-126 lg:max-w-5xl">
         <Spinner color={Colors.BROWN} />
         <p className="font-unbounded">Завантаження</p>
       </div>
     )
   }
 
-  if (query.isError) {
+  if (images.isError) {
     return (
       <div className="border-brown text-brown flex h-56 w-full max-w-2xl items-center justify-center rounded-3xl border-2 bg-red-300 lg:h-96 lg:max-w-5xl">
-        <p className="font-unbounded">{query.error.message}</p>
+        <p className="font-unbounded">
+          {images.error?.message || 'Сталася невідома помилка'}
+        </p>
       </div>
     )
   }
 
   return (
-    <div ref={emblaRef} className="mb-4 ml-2 flex justify-center">
+    <div ref={emblaRef} id="banner" className="mb-4 ml-2 flex justify-center">
       <Carousel
         plugins={plugin ? [plugin] : []}
         opts={{ loop: true }}
@@ -59,8 +61,7 @@ const Banner = () => {
                   height={160}
                   src={image ?? '/fallback.png'}
                   alt="banner"
-                  className="border-brown bg-mistyrose text-brown mx-auto rounded-3xl border-2 object-cover"
-                  style={{ maxWidth: '100%', height: 'auto' }}
+                  className="border-brown bg-mistyrose text-brown mx-auto max-h-46 rounded-3xl border-2 object-cover md:max-h-96 lg:max-h-126"
                 />
               </CarouselItem>
             ))}

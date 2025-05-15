@@ -60,17 +60,11 @@ const GuestModal = (props: Props) => {
             onChange={(e) => setPhone(e.target.value)}
           />
 
-          <div className="flex w-full flex-col items-center justify-center gap-4">
-            <Button
-              onClick={handleSubmit}
-              className="bg-strong-cyan font-unbounded hover:bg-strong-cyan/80 active:bg-strong-cyan/70 h-10 w-46 text-white shadow-none"
-            >
+          <div className="flex w-full flex-col items-center justify-center gap-4 lg:flex-row-reverse">
+            <Button onClick={handleSubmit} size="lg">
               Підтвердити
             </Button>
-            <Button
-              className="border-strong-cyan font-unbounded text-strong-cyan hover:bg-strong-cyan/10 hover:text-strong-cyan h-10 w-46 bg-transparent shadow-none"
-              asChild
-            >
+            <Button size="lg" variant="ghost" asChild>
               <Link href="/login">Увійти</Link>
             </Button>
           </div>

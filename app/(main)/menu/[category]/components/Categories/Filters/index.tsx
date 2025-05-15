@@ -58,9 +58,7 @@ const Filters = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-pale-turquoise text-brown font-unbounded hover:bg-pale-turquoise/80 active:bg-pale-turquoise/60 shadow-none">
-          Фільтри
-        </Button>
+        <Button color="pale-turquoise">Фільтри</Button>
       </DialogTrigger>
 
       <DialogContent className="border-strong-cyan rounded-3xl border-3">
@@ -98,7 +96,8 @@ const Filters = () => {
           </div>
 
           <Button
-            className="bg-strong-cyan hover:bg-strong-cyan/80 active:bg-strong-cyan/60 font-unbounded mt-2 h-13 w-48 text-white shadow-none"
+            className="mt-2"
+            size="xl"
             onClick={() => {
               setAllergens(selectedAllergens)
               setPriceRange(localPriceRange)

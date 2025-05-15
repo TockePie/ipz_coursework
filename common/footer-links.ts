@@ -7,7 +7,11 @@ const LINKS = [
   { label: 'мерч', href: '/menu/merch' },
   { label: 'про нас', href: '/#about' },
   { label: 'бронювання', href: '/#booking' },
-  { label: 'buymecoffee', href: 'https://buymecoffee.com/bunnfee' }
+  {
+    label: 'buymecoffee',
+    href: 'https://buymecoffee.com/bunnfee',
+    target: '_blank'
+  }
 ]
 
 const SOCIALS = [

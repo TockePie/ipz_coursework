@@ -24,10 +24,11 @@ const Links = () => (
       title="Корисні посилання"
       className="flex-wrap justify-center gap-4 lg:flex-col lg:items-start"
     >
-      {LINKS.map(({ label, href }, index) => (
+      {LINKS.map(({ label, href, target }, index) => (
         <Link
           href={href}
           key={index}
+          target={target}
           className="text-cornsilk font-unbounded cursor-pointer font-light transition-all hover:underline"
         >
           {label}

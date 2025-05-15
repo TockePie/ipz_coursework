@@ -15,11 +15,7 @@ const SuccessDialog = ({ open, onClose }: Props) => (
       <p className="text-brown/80 font-unbounded mt-2 text-sm font-light">
         Ваші дані успішно оновлено.
       </p>
-      <Button
-        className="bg-strong-cyan hover:bg-strong-cyan/80 active:bg-strong-cyan/70 font-unbounded mt-4 text-white"
-        onClick={onClose}
-        asChild
-      >
+      <Button className="mt-4" onClick={onClose} asChild>
         <Link href="/">На головну</Link>
       </Button>
     </DialogContent>

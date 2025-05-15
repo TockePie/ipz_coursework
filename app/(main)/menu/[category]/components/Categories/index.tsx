@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from '@ui/button'
 import { ScrollArea, ScrollBar } from '@ui/scroll-area'
-import clsx from 'clsx'
 import Link from 'next/link'
 
 import { MENU_LINKS } from '@/common/page-links'
@@ -10,7 +9,7 @@ import DishCategory from '@/types/enums/dish-category'
 import Filters from './Filters'
 
 interface Props {
-  currentCategory?: DishCategory
+  currentCategory?: keyof typeof DishCategory
 }
 
 const Categories = (props: Props) => {
@@ -24,12 +23,12 @@ const Categories = (props: Props) => {
         {MENU_LINKS.map((link, index) => (
           <Button
             key={index}
-            variant="ghost"
-            className={clsx(
-              'font-unbounded text-brown hover:text-brown overflow-anchor-none transition duration-300',
-              currentCategory === link.routeName &&
-                'bg-light-goldenrod-yellow hover:bg-light-goldenrod-yellow/70 active:bg-light-goldenrod-yellow/50'
-            )}
+            variant={currentCategory === link.routeName ? 'secondary' : 'ghost'}
+            color={
+              currentCategory === link.routeName
+                ? 'light-goldenrod-yellow'
+                : 'brown'
+            }
             asChild
           >
             <Link href={link.href} scroll={false}>

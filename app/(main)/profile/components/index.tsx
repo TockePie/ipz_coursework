@@ -1,29 +1,27 @@
+// ProfilePage.tsx
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { Button } from '@ui/button'
+import { FormProvider, useForm } from 'react-hook-form'
 
 import { PasswordReset } from '@/api/user'
-import Spinner from '@/components/Spinner'
 import useAuth from '@/hooks/api/use-auth'
 import useUpdateUser from '@/hooks/api/use-update-user'
 import useUserData from '@/hooks/api/use-user-data'
 import useUserStore from '@/hooks/store/use-user-store'
-import Colors from '@/types/enums/colors'
 
-import PasswordFields from './PasswordFields'
-import PersonalInfoFields from './PersonalInfoFields'
+import ProfileForm from './ProfileForm'
 import SuccessDialog from './SuccessDialog'
 
 const ProfilePage = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const methods = useForm<PasswordReset>()
-  const { handleSubmit, setValue, reset } = methods
+  const { reset, setValue } = methods
 
   const { logout } = useAuth()
   const { passwordReset, isLoading, isSuccess, error } = useUpdateUser()
   const { userInfo } = useUserStore((state) => state)
+
   useUserData()
 
   useEffect(() => {
@@ -41,10 +39,10 @@ const ProfilePage = () => {
     }
   }, [isSuccess, reset])
 
-  const onSubmitHandler: SubmitHandler<PasswordReset> = async (data) => {
+  const handleSubmit = async (data: PasswordReset) => {
     const formData = { ...data }
 
-    if (!formData.old_password || formData.old_password.trim() === '') {
+    if (!formData.old_password?.trim()) {
       delete formData.old_password
       delete formData.new_password
       delete formData.new_password_repeat
@@ -60,37 +58,14 @@ const ProfilePage = () => {
 
   return (
     <FormProvider {...methods}>
-      <main className="bg-cornsilk p-6">
-        <form
-          className="mx-auto flex min-h-screen max-w-sm flex-col items-center gap-y-6"
-          onSubmit={handleSubmit(onSubmitHandler)}
-        >
-          <h1>Змінити дані</h1>
+      <ProfileForm
+        onSubmit={handleSubmit}
+        onLogout={handleLogOut}
+        error={error}
+        isLoading={isLoading}
+      />
 
-          <Button onClick={handleLogOut} variant="outline" size="lg">
-            Вийти з акаунту
-          </Button>
-
-          <PersonalInfoFields />
-          <hr className="border-brown w-full" />
-          <PasswordFields />
-
-          {error && error.status !== 401 && (
-            <p className="text-red-500">{error.message}</p>
-          )}
-          {error && error.status === 401 && (
-            <p className="text-red-500">
-              Здається, ви ввели неправильний пароль.
-            </p>
-          )}
-
-          <Button size="xl" type="submit" disabled={isLoading}>
-            {isLoading ? <Spinner color={Colors.WHITE} /> : 'Застосувати'}
-          </Button>
-        </form>
-
-        <SuccessDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
-      </main>
+      <SuccessDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
     </FormProvider>
   )
 }

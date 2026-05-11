@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 import Link from 'next/link'
 
 import { SheetClose } from '@/components/ui/sheet'
@@ -26,7 +26,7 @@ const LinkList = ({ title, links, className }: Props) => (
       <SheetClose key={index} asChild>
         <Link
           href={link.href}
-          className={clsx(
+          className={cx(
             link.bgColor,
             'flex w-full items-center gap-2.5 rounded-3xl p-4'
           )}

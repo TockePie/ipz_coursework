@@ -1,5 +1,4 @@
-import React, { ComponentType } from 'react'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
@@ -22,7 +21,7 @@ const getColor = (color: Colors) => {
 
 interface Props {
   color: Colors
-  FormComponent: ComponentType
+  FormComponent: React.ComponentType
 }
 
 const AuthPage = async (props: Props) => {
@@ -39,7 +38,7 @@ const AuthPage = async (props: Props) => {
     <>
       <TileableBackground />
       <main
-        className={clsx(
+        className={cx(
           getColor(color),
           'relative flex min-h-screen flex-col items-center gap-6 overflow-hidden py-8'
         )}

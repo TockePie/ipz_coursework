@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle
 } from '@ui/card'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
@@ -51,7 +51,7 @@ const TableCard = ({
           Столик №{number}
         </span>
         <span
-          className={clsx(
+          className={cx(
             'font-unbounded text-sm',
             is_available ? 'text-strong-cyan' : 'text-red-500'
           )}

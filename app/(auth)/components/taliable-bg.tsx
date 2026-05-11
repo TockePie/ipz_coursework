@@ -1,9 +1,7 @@
 'use client'
 
-import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-
-import { cn } from '@/lib/utils'
+import { cx } from 'class-variance-authority'
 
 import BackgroundPattern from './bg-pattern'
 
@@ -24,7 +22,7 @@ const TileableBackground = (props: Props) => {
 
   return (
     <div
-      className={cn(
+      className={cx(
         'pointer-events-none fixed inset-0 z-[1] opacity-45',
         className
       )}

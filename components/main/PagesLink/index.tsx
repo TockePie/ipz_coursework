@@ -1,5 +1,5 @@
 import React from 'react'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -11,7 +11,7 @@ const PagesLink = () => {
     <Link
       href={link.href}
       key={index}
-      className={clsx(
+      className={cx(
         link.bgMainColor,
         'border-brown flex justify-between gap-2.5 rounded-2xl border p-4'
       )}

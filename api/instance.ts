@@ -1,19 +1,18 @@
 import axios from 'axios'
 
-import { API_BASE_URL, IMG_BASE_URL, REQUEST_TIMEOUT } from './config'
-
-const defaultHeaders = { 'Content-Type': 'application/json' }
+const headers = { 'Content-Type': 'application/json' }
+const timeout = Number(process.env.AXIOS_REQUEST_TIMEOUT) ?? 10000
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
-  timeout: REQUEST_TIMEOUT,
-  headers: defaultHeaders
+  baseURL: process.env.API_URL,
+  timeout,
+  headers
 })
 
 const imgApi = axios.create({
-  baseURL: IMG_BASE_URL,
-  timeout: REQUEST_TIMEOUT,
-  headers: defaultHeaders
+  baseURL: process.env.IMG_URL,
+  timeout,
+  headers
 })
 
 export { api, imgApi }

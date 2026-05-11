@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react'
-import clsx from 'clsx'
+import React from 'react'
+import { cx } from 'class-variance-authority'
 import type { Metadata } from 'next'
 
 import { geistMono, geistSans, meila, unbounded } from '@/styles/font-config'
@@ -16,11 +16,11 @@ const metadata: Metadata = {
 const RootLayout = ({
   children
 }: Readonly<{
-  children: ReactNode
+  children: React.ReactNode
 }>) => (
   <html lang="en" suppressHydrationWarning>
     <body
-      className={clsx(
+      className={cx(
         geistSans.variable,
         geistMono.variable,
         meila.variable,

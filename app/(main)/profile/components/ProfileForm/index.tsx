@@ -1,10 +1,11 @@
 import React from 'react'
 import { SubmitHandler, useFormContext } from 'react-hook-form'
+import { useQueryClient } from '@tanstack/react-query'
 import { Button } from '@ui/button'
 import { AxiosError } from 'axios'
+import Cookies from 'js-cookie'
 
 import Spinner from '@/components/Spinner'
-import useAuth from '@/hooks/api/use-auth'
 import { PasswordReset } from '@/types/auth'
 import Colors from '@/types/enums/colors'
 
@@ -18,11 +19,14 @@ interface Props {
 }
 
 const ProfileForm = ({ onSubmit, isLoading, error }: Props) => {
+  const queryClient = useQueryClient()
   const { handleSubmit } = useFormContext<PasswordReset>()
-  const { logout } = useAuth()
 
   const handleLogOut = async () => {
-    await logout()
+    Cookies.remove('user_id')
+    queryClient.removeQueries({ queryKey: ['user'] })
+    queryClient.clear()
+
     window.location.reload()
   }
 

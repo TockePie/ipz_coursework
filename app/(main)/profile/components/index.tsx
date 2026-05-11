@@ -1,11 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import useUpdateUser from '@/hooks/api/use-update-user'
 import useUserData from '@/hooks/api/use-user-data'
-import useUserStore from '@/hooks/store/use-user-store'
 import { PasswordReset } from '@/types/auth'
 
 import ProfileForm from './ProfileForm'
@@ -17,9 +16,7 @@ const ProfilePage = () => {
   const { reset, setValue } = methods
 
   const { passwordReset, isLoading, isSuccess, error } = useUpdateUser()
-  const { userInfo } = useUserStore((state) => state)
-
-  useUserData()
+  const { userInfo } = useUserData()
 
   useEffect(() => {
     if (userInfo) {

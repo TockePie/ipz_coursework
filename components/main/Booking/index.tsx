@@ -1,13 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@ui/button'
 
-import useAuth from '@/hooks/api/use-auth'
 import { useReservation } from '@/hooks/api/use-reservation'
 import useUserData from '@/hooks/api/use-user-data'
-import useUserStore from '@/hooks/store/use-user-store'
 import { FormValues } from '@/types/form-values'
 
 import ChooseTable from './ChooseTable'
@@ -29,10 +27,8 @@ const Booking = () => {
     }
   })
   const { handleSubmit, watch } = methods
-  const { isAuthenticated } = useAuth()
   const { createReservation, isSuccess, isError, error } = useReservation()
-  const { userInfo } = useUserStore()
-  useUserData()
+  const { userInfo } = useUserData()
 
   const date = watch('date')
   const time = watch('time')
@@ -40,17 +36,10 @@ const Booking = () => {
   const table = watch('table')
 
   const onSubmit = async (formData: FormValues) => {
-    const isAuth = isAuthenticated()
+    const hasGuestInfo = guestInfo.name && guestInfo.phone
 
-    if (!isAuth && (!guestInfo.name || !guestInfo.phone)) {
+    if (!userInfo && !hasGuestInfo) {
       setOpenGuestModal(true)
-      return
-    }
-
-    if (isAuth && !userInfo) {
-      alert(
-        'Не вдалося отримати дані користувача. Спробуйте вийти з системи та увійти знову.'
-      )
       return
     }
 
@@ -59,10 +48,10 @@ const Booking = () => {
       slot_start: formData.time,
       table_id: Number(formData.table),
       guest_count: formData.people,
-      user_id: isAuth ? userInfo!.id : undefined,
-      phone_number: isAuth ? userInfo!.phone_number : guestInfo.phone,
-      name: isAuth
-        ? `${userInfo!.first_name} ${userInfo!.last_name}`
+      user_id: userInfo?.id,
+      phone_number: userInfo ? userInfo.phone_number : guestInfo.phone,
+      name: userInfo
+        ? `${userInfo.first_name} ${userInfo.last_name}`
         : guestInfo.name,
       comments: ''
     }

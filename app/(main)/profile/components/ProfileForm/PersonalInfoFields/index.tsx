@@ -1,13 +1,14 @@
-import React from 'react'
+'use client'
+
 import validator from 'validator'
 
-import useUserStore from '@/hooks/store/use-user-store'
+import useUserData from '@/hooks/api/use-user-data'
 
 import InnerContainer from '../InnerContainer'
 import InputField from '../InputField'
 
 const PersonalInfoFields = () => {
-  const { userInfo } = useUserStore((state) => state)
+  const { userInfo } = useUserData()
 
   return (
     <InnerContainer title="Персональні дані">

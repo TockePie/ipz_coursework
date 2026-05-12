@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 
-const MenuRootPage = async () => {
+export default async function MenuRootPage() {
   redirect('/menu/main')
-}
 
-export default MenuRootPage
+  return null
+}

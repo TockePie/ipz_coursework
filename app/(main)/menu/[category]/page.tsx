@@ -1,17 +1,16 @@
-import React from 'react'
-
 import Banner from '@/components/main/Banner'
 import BlockSection from '@/components/main/BlockSection'
 import DishCategory from '@/types/enums/dish-category'
 
 import Categories from './components/Categories'
 import DishGroup from './components/DishGroup'
+import { FilterProvider } from './filterContext'
 
-const MenuCategoryPage = async ({
+export default async function MenuCategoryPage({
   params
 }: {
   params: Promise<{ category: string }>
-}) => {
+}) {
   const { category } = await params
   const currentCategory = (category as keyof typeof DishCategory) || 'main'
 
@@ -21,12 +20,12 @@ const MenuCategoryPage = async ({
 
       <BlockSection title="Меню">
         <div className="mb-5 flex w-full flex-col gap-y-4">
-          <Categories currentCategory={currentCategory} />
-          <DishGroup currentCategory={currentCategory} />
+          <FilterProvider>
+            <Categories currentCategory={currentCategory} />
+            <DishGroup currentCategory={currentCategory} />
+          </FilterProvider>
         </div>
       </BlockSection>
     </main>
   )
 }
-
-export default MenuCategoryPage

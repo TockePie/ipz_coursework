@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import { Slider } from '@ui/slider'
 
 interface Props {
@@ -8,7 +7,7 @@ interface Props {
   onChange: (value: number[]) => void
 }
 
-const PriceRange = ({ value, onChange }: Props) => {
+export default function PriceRange({ value, onChange }: Props) {
   return (
     <div className="flex w-full flex-col gap-5">
       <h4>Ціна:</h4>
@@ -30,5 +29,3 @@ const PriceRange = ({ value, onChange }: Props) => {
     </div>
   )
 }
-
-export default PriceRange

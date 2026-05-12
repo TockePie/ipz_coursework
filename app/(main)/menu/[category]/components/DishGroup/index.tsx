@@ -1,10 +1,11 @@
 'use client'
 
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 
 import useDishes from '@/hooks/api/use-dishes'
-import useFiltersStore from '@/hooks/store/use-filters-store'
 import DishCategory from '@/types/enums/dish-category'
+
+import { useFilters } from '../../filterContext'
 
 import DishCard from './DishCard'
 import DishModal from './DishModal'
@@ -17,7 +18,9 @@ const DishGroup = (props: Props) => {
   const { currentCategory } = props
 
   const { data, isLoading, isError, images } = useDishes()
-  const { allergens, priceRange } = useFiltersStore()
+  const {
+    filters: { allergens, priceRange }
+  } = useFilters()
 
   const filteredData =
     data &&

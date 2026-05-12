@@ -28,8 +28,8 @@ const getUser = async (user_id: string): Promise<User> => {
 }
 
 //TODO: change to profileUpdate()
-export async function passwordReset(props: ProfileUpdate) {
-  const { data } = await api.post('/users/passwordresetclassic', props)
+export async function profileUpdate(props: ProfileUpdate) {
+  const { data } = await api.post('/users/profileUpdateclassic', props)
 
   return data
 }

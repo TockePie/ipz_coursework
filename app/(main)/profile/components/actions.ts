@@ -2,7 +2,7 @@
 
 import { AxiosError } from 'axios'
 
-import { passwordReset } from '@/api/auth'
+import { profileUpdate } from '@/api/auth'
 import { ActionState } from '@/types/action-state'
 import { ProfileUpdate, ProfileUpdateSchema } from '@/types/auth'
 
@@ -29,7 +29,7 @@ export async function profileUpdateAction(
       delete updateData.new_password_repeat
     }
 
-    await passwordReset(updateData)
+    await profileUpdate(updateData)
 
     return { success: true }
   } catch (error: unknown) {

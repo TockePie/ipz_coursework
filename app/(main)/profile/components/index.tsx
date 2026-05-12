@@ -5,14 +5,14 @@ import { FormProvider, useForm } from 'react-hook-form'
 
 import useUpdateUser from '@/hooks/api/use-update-user'
 import useUserData from '@/hooks/api/use-user-data'
-import { PasswordReset } from '@/types/auth'
+import { ProfileUpdate } from '@/types/auth'
 
 import ProfileForm from './ProfileForm'
 import SuccessDialog from './SuccessDialog'
 
 const ProfilePage = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
-  const methods = useForm<PasswordReset>()
+  const methods = useForm<ProfileUpdate>()
   const { reset, setValue } = methods
 
   const { passwordReset, isLoading, isSuccess, error } = useUpdateUser()
@@ -33,7 +33,7 @@ const ProfilePage = () => {
     }
   }, [isSuccess, reset])
 
-  const handleSubmit = async (data: PasswordReset) => {
+  const handleSubmit = async (data: ProfileUpdate) => {
     const formData = { ...data }
 
     if (!formData.old_password?.trim()) {

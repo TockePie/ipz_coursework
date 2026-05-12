@@ -1,4 +1,3 @@
-import React from 'react'
 import { SubmitHandler, useFormContext } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
 import { Button } from '@ui/button'
@@ -6,21 +5,21 @@ import { AxiosError } from 'axios'
 import Cookies from 'js-cookie'
 
 import Spinner from '@/components/Spinner'
-import { PasswordReset } from '@/types/auth'
+import { ProfileUpdate } from '@/types/auth'
 import Colors from '@/types/enums/colors'
 
 import PasswordFields from './PasswordFields'
 import PersonalInfoFields from './PersonalInfoFields'
 
 interface Props {
-  onSubmit: SubmitHandler<PasswordReset>
+  onSubmit: SubmitHandler<ProfileUpdate>
   isLoading: boolean
   error?: AxiosError<unknown, any> | null
 }
 
 const ProfileForm = ({ onSubmit, isLoading, error }: Props) => {
   const queryClient = useQueryClient()
-  const { handleSubmit } = useFormContext<PasswordReset>()
+  const { handleSubmit } = useFormContext<ProfileUpdate>()
 
   const handleLogOut = async () => {
     Cookies.remove('user_id')

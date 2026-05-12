@@ -29,6 +29,46 @@ export const RegisterSchema = z.object({
 })
 export type RegisterCredentials = z.infer<typeof RegisterSchema>
 
+export const ProfileUpdateSchema = z
+  .object({
+    ...RegisterSchema.omit({ password: true }).shape,
+    old_password: z.string().optional(),
+    new_password: z.string().optional(),
+    new_password_repeat: z.string().optional()
+  })
+  .refine(
+    (data) => {
+      if (data.new_password && !data.old_password?.trim()) {
+        return false
+      }
+      return true
+    },
+    {
+      message: 'Введіть старий пароль, щоб змінити його',
+      path: ['old_password']
+    }
+  )
+  .refine(
+    (data) => {
+      if (
+        data.old_password?.trim() &&
+        (!data.new_password || data.new_password.length < 8)
+      ) {
+        return false
+      }
+      return true
+    },
+    {
+      message: 'Пароль повинен містити не менше 8 символів',
+      path: ['new_password']
+    }
+  )
+  .refine((data) => data.new_password === data.new_password_repeat, {
+    message: 'Паролі не збігаються',
+    path: ['new_password_repeat']
+  })
+export type ProfileUpdate = z.infer<typeof ProfileUpdateSchema>
+
 interface LoginResponse {
   message: string
   user_id: string
@@ -42,13 +82,4 @@ interface User {
   is_admin: boolean
 }
 
-interface PasswordReset {
-  first_name: string
-  last_name: string
-  phone_number: string
-  old_password?: string
-  new_password?: string
-  new_password_repeat?: string
-}
-
-export type { LoginResponse, PasswordReset, User }
+export type { LoginResponse, User }

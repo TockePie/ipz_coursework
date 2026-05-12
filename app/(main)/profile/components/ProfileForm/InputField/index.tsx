@@ -5,39 +5,22 @@ import { Input } from '@ui/input'
 interface Props extends ComponentProps<'input'> {
   label: string
   name: string
-  customRegister?: {
-    validate?: (value: string) => boolean | string
-    required?:
-      | string
-      | {
-          value: boolean
-          message: string
-        }
-  }
 }
 
-const InputField = (inputProps: Props) => {
-  const {
-    label,
-    type,
-    defaultValue,
-    name,
-    required = false,
-    customRegister,
-    ...props
-  } = inputProps
-
+export default function InputField({
+  label,
+  type,
+  defaultValue,
+  name,
+  required = false,
+  ...props
+}: Props) {
   const {
     register,
     formState: { errors }
   } = useFormContext()
 
-  const renderError = (name: string) =>
-    errors[name] && (
-      <p className="mt-1 text-sm text-red-500">
-        {errors[name]?.message?.toString()}
-      </p>
-    )
+  const error = errors[name]
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -48,15 +31,17 @@ const InputField = (inputProps: Props) => {
       <Input
         type={type}
         defaultValue={defaultValue}
-        aria-invalid={errors[name] ? 'true' : 'false'}
+        aria-invalid={error ? 'true' : 'false'}
         className="border-bright-cyan font-unbounded border bg-white py-6 font-light shadow-none"
-        {...register(name, customRegister)}
+        {...register(name)}
         {...props}
       />
 
-      {renderError(name)}
+      {error && (
+        <p className="mt-1 text-sm text-red-500">
+          {error?.message?.toString()}
+        </p>
+      )}
     </div>
   )
 }
-
-export default InputField

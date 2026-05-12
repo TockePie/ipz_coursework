@@ -1,53 +1,54 @@
 'use client'
 
-import { Fragment } from 'react'
+import { useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useSearchParams } from 'next/navigation'
 
-import useDishes from '@/hooks/api/use-dishes'
+import { getDishes } from '@/api/dish'
 import DishCategory from '@/types/enums/dish-category'
 
 import { useFilters } from '../../filterContext'
 
 import DishCard from './DishCard'
 import DishModal from './DishModal'
+import DishSkeleton from './skeleton'
 
 interface Props {
   currentCategory: keyof typeof DishCategory
 }
 
-const DishGroup = (props: Props) => {
-  const { currentCategory } = props
+export default function DishGroup({ currentCategory }: Props) {
+  const searchParams = useSearchParams()
+  const selectedDishId = searchParams.get('dish')
 
-  const { data, isLoading, isError, images } = useDishes()
   const {
     filters: { allergens, priceRange }
   } = useFilters()
 
-  const filteredData =
-    data &&
-    data.filter(
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['dishes'],
+    queryFn: getDishes,
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
+
+  const filteredData = useMemo(() => {
+    if (!data) return []
+    return data.filter(
       (item) =>
         item.category === DishCategory[currentCategory] &&
-        !allergens.some((allergen) => item.tags.includes(allergen)) &&
+        !allergens.some((a) => item.tags.includes(a)) &&
         item.variants.some(
-          (variant) =>
-            variant.price >= priceRange[0] && variant.price <= priceRange[1]
+          (v) => v.price >= priceRange[0] && v.price <= priceRange[1]
         )
     )
+  }, [data, currentCategory, allergens, priceRange])
 
-  if (isLoading) {
-    return (
-      <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 lg:gap-6">
-        {Array(4)
-          .fill(0)
-          .map((_, index) => (
-            <div
-              key={index}
-              className="bg-mistyrose h-56 w-full animate-pulse rounded-2xl transition duration-300 lg:h-82"
-            />
-          ))}
-      </div>
-    )
-  }
+  const selectedDish = useMemo(
+    () => filteredData.find((d) => d.id.toString() === selectedDishId),
+    [filteredData, selectedDishId]
+  )
+
+  if (isLoading) return <DishSkeleton />
 
   if (isError) {
     return (
@@ -60,21 +61,21 @@ const DishGroup = (props: Props) => {
   return (
     <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 lg:gap-6">
       {filteredData?.map((item) => (
-        <Fragment key={item.id}>
-          <DishCard
-            item={item}
-            image={images.data?.[item.id]}
-            isLoading={images.isLoading}
-          />
-          <DishModal
-            item={item}
-            image={images.data?.[item.id]}
-            isLoading={images.isLoading}
-          />
-        </Fragment>
+        <DishCard
+          key={item.id}
+          item={item}
+          image={`${process.env.NEXT_PUBLIC_API_BASE}${item.image_url}`}
+          isLoading={isLoading}
+        />
       ))}
+
+      {selectedDish && (
+        <DishModal
+          item={selectedDish}
+          image={`${process.env.NEXT_PUBLIC_API_BASE}${selectedDish.image_url}`}
+          isOpen={!!selectedDish}
+        />
+      )}
     </div>
   )
 }
-
-export default DishGroup

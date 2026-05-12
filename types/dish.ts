@@ -8,7 +8,7 @@ interface Dish {
   image_url: string
   category: string
   is_available: boolean
-  tags: string[] | Allergens[]
+  tags: Allergens[]
   variants: Variants[]
   modifier_groups: ModifierGroup[]
 }

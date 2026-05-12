@@ -1,10 +1,9 @@
-import React from 'react'
 import { Button } from '@ui/button'
 import Link from 'next/link'
 
 import isAuthenticated from '@/utils/is-authenticated'
 
-const Buttons = async () => {
+export default async function Buttons() {
   if (await isAuthenticated()) {
     return null
   }
@@ -26,5 +25,3 @@ const Buttons = async () => {
     </div>
   )
 }
-
-export default Buttons

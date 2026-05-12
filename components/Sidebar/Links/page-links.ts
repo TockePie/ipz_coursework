@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   CalendarClock,
   Contact,
@@ -9,12 +8,11 @@ import {
 } from 'lucide-react'
 
 import BurgerIcon from '@/components/Icons/ui/burger-icon'
-import Colors from '@/types/enums/colors'
 
-const MENU_LINKS = [
+export const MENU_LINKS = [
   {
     label: 'Основні страви',
-    icon: <BurgerIcon color={Colors.BROWN} />,
+    icon: BurgerIcon,
     routeName: 'main',
     href: '/menu/main',
     bgColor: 'bg-light-goldenrod-yellow',
@@ -22,7 +20,7 @@ const MENU_LINKS = [
   },
   {
     label: 'Десерти',
-    icon: <Dessert color={Colors.BROWN} />,
+    icon: Dessert,
     routeName: 'desserts',
     href: '/menu/desserts',
     bgColor: 'bg-cornsilk',
@@ -30,7 +28,7 @@ const MENU_LINKS = [
   },
   {
     label: 'Напої',
-    icon: <Wine color={Colors.BROWN} />,
+    icon: Wine,
     routeName: 'drinks',
     href: '/menu/drinks',
     bgColor: 'bg-pale-turquoise',
@@ -38,7 +36,7 @@ const MENU_LINKS = [
   },
   {
     label: 'Унікальний мерч',
-    icon: <Shirt color={Colors.BROWN} />,
+    icon: Shirt,
     routeName: 'merch',
     href: '/menu/merch',
     bgColor: 'bg-light-goldenrod-yellow',
@@ -46,25 +44,23 @@ const MENU_LINKS = [
   }
 ]
 
-const PAGES_LINKS = [
+export const PAGES_LINKS = [
   {
     label: 'Забронювати столик',
-    icon: <CalendarClock color={Colors.BROWN} />,
+    icon: CalendarClock,
     href: '/#booking',
     bgColor: 'bg-cornsilk'
   },
   {
     label: 'Про нас',
-    icon: <Users color={Colors.BROWN} />,
+    icon: Users,
     href: '/#about',
     bgColor: 'bg-pale-turquoise'
   },
   {
     label: 'Контакти',
-    icon: <Contact color={Colors.BROWN} />,
+    icon: Contact,
     href: '#footer',
     bgColor: 'bg-light-goldenrod-yellow'
   }
 ]
-
-export { MENU_LINKS, PAGES_LINKS }

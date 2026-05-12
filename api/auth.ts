@@ -22,16 +22,12 @@ export async function register(
   return data
 }
 
-const getUser = async (user_id: string): Promise<User> => {
+export async function getUser(user_id: string): Promise<User> {
   const { data } = await api.get(`/users/${user_id}`)
   return data
 }
 
-//TODO: change to profileUpdate()
 export async function profileUpdate(props: ProfileUpdate) {
   const { data } = await api.post('/users/profileUpdateclassic', props)
-
   return data
 }
-
-export { getUser }

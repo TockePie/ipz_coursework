@@ -1,4 +1,3 @@
-import React from 'react'
 import { CircleUserRound } from 'lucide-react'
 
 import Colors from '@/types/enums/colors'
@@ -6,7 +5,7 @@ import isAuthenticated from '@/utils/is-authenticated'
 
 import LoggedCard from './LoggedCard'
 
-const Account = async () => {
+export default async function Account() {
   if (await isAuthenticated()) {
     return <LoggedCard />
   }
@@ -18,5 +17,3 @@ const Account = async () => {
     </div>
   )
 }
-
-export default Account

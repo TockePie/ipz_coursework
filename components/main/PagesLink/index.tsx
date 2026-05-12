@@ -3,7 +3,7 @@ import { cx } from 'class-variance-authority'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
-import { MENU_LINKS } from '@/common/page-links'
+import { MENU_LINKS } from '@/components/Sidebar/Links/page-links'
 import Colors from '@/types/enums/colors'
 
 const PagesLink = () => {

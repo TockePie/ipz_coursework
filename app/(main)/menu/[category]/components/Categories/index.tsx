@@ -3,7 +3,7 @@ import { Button } from '@ui/button'
 import { ScrollArea, ScrollBar } from '@ui/scroll-area'
 import Link from 'next/link'
 
-import { MENU_LINKS } from '@/common/page-links'
+import { MENU_LINKS } from '@/components/Sidebar/Links/page-links'
 import DishCategory from '@/types/enums/dish-category'
 
 import Filters from './Filters'

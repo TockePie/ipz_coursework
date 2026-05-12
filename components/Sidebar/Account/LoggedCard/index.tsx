@@ -8,13 +8,12 @@ import Link from 'next/link'
 import useUserData from '@/hooks/api/use-user-data'
 import Colors from '@/types/enums/colors'
 
-const LoggedCard = () => {
+export default function LoggedCard() {
   const queryClient = useQueryClient()
   const { userInfo } = useUserData()
 
-  const handleLogOut = async () => {
+  const handleLogOut = () => {
     Cookies.remove('user_id')
-    queryClient.removeQueries({ queryKey: ['user'] })
     queryClient.clear()
 
     window.location.reload()
@@ -54,5 +53,3 @@ const LoggedCard = () => {
     </div>
   )
 }
-
-export default LoggedCard

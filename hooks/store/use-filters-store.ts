@@ -12,6 +12,7 @@ interface StoreActions {
   setPriceRange: (priceRange: number[]) => void
 }
 
+//TODO: yarn remove zustand after removal
 const useFiltersStore = create<StoreState & StoreActions>((set) => ({
   allergens: [],
   priceRange: [0, 320],

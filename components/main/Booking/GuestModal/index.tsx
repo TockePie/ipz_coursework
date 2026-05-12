@@ -25,6 +25,8 @@ const GuestModal = (props: Props) => {
       return
     }
 
+    //TODO: yarn remove validator after removal
+    // yarn remove @types/validator -D
     if (phone && !validator.isMobilePhone(phone, 'uk-UA')) {
       alert('Неправильний номер телефону')
       return

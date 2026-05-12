@@ -44,17 +44,17 @@ export default function MainLoginForm() {
               required
             />
 
-            {data?.errors?.[input.name] && (
+            {data?.zodErrors?.[input.name] && (
               <p className="mt-1 text-sm text-red-500">
-                {data?.errors?.[input.name]?.[0]}
+                {data?.zodErrors?.[input.name]?.[0]}
               </p>
             )}
           </div>
         ))}
       </div>
 
-      {data?.message && !data.success && (
-        <p className="mt-1 text-sm text-red-500">{data.message}</p>
+      {data?.errorMessage && !data.success && (
+        <p className="mt-1 text-sm text-red-500">{data.errorMessage}</p>
       )}
 
       <div className="flex w-54 flex-col items-stretch gap-4">

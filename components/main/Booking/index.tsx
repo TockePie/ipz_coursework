@@ -14,6 +14,7 @@ import GuestModal from './GuestModal'
 import PickDay from './PickDay'
 import PickTime from './PickTime'
 
+//TODO: yarn remove react-hook-form @hookform/resolvers after removal
 const Booking = () => {
   const [openModal, setOpenModal] = useState(false)
   const [openGuestModal, setOpenGuestModal] = useState(false)

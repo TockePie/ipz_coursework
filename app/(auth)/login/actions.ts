@@ -4,30 +4,21 @@ import { AxiosError } from 'axios'
 import { cookies } from 'next/headers'
 
 import { login } from '@/api/auth'
+import { ActionState } from '@/types/action-state'
 import { LoginCredentials, LoginSchema } from '@/types/auth'
 
-export interface ActionState {
-  success: boolean
-  message?: string
-  errors?:
-    | {
-        [K in keyof LoginCredentials]?: string[]
-      }
-    | null
-}
-
 export async function loginAction(
-  _prevState: ActionState | null,
+  _prevState: ActionState<LoginCredentials> | null,
   formData: FormData
-): Promise<ActionState> {
+): Promise<ActionState<LoginCredentials>> {
   const data = Object.fromEntries(formData.entries())
 
   const validatedFields = LoginSchema.safeParse(data)
   if (!validatedFields.success) {
     return {
       success: false,
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Перевірте коректність введених даних.'
+      zodErrors: validatedFields.error.flatten().fieldErrors,
+      errorMessage: 'Перевірте коректність введених даних.'
     }
   }
 
@@ -40,20 +31,20 @@ export async function loginAction(
       path: '/'
     })
 
-    return { success: true, errors: null }
+    return { success: true, zodErrors: null }
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
       return {
         success: false,
-        errors: null,
-        message: error.message
+        zodErrors: null,
+        errorMessage: error.message
       }
     }
 
     return {
       success: false,
-      errors: null,
-      message: 'Неправильні дані для входу'
+      zodErrors: null,
+      errorMessage: 'Неправильні дані для входу'
     }
   }
 }

@@ -1,19 +1,8 @@
 import { Banner } from '@/types/banner'
 
-import { api, imgApi } from './instance'
+import { api } from './instance'
 
-const getBanners = async (): Promise<Banner[]> => {
+export async function getBanners(): Promise<Banner[]> {
   const { data } = await api.get('/news')
-
   return data
 }
-
-const getBannerImage = async (id: number): Promise<string> => {
-  const response = await imgApi.get<Blob>(`/${id}/`, {
-    responseType: 'blob'
-  })
-
-  return URL.createObjectURL(response.data)
-}
-
-export { getBannerImage, getBanners }

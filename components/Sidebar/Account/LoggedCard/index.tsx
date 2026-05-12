@@ -15,7 +15,6 @@ export default function LoggedCard() {
   const handleLogOut = () => {
     Cookies.remove('user_id')
     queryClient.clear()
-
     window.location.reload()
   }
 

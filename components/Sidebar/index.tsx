@@ -2,8 +2,7 @@ import { ScrollArea } from '@ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '@ui/sheet'
 import { Menu } from 'lucide-react'
 
-import { MENU_LINKS, PAGES_LINKS } from '@/components/Sidebar/Links/page-links'
-
+import { MENU_LINKS, PAGES_LINKS } from './Links/page-links'
 import Account from './Account'
 import Buttons from './Buttons'
 import LinkList from './Links'

@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 import { CircleUserRound, LogOut, Pencil } from 'lucide-react'
 import Link from 'next/link'
 
-import useUserData from '@/hooks/api/use-user-data'
+import useUserData from '@/hooks/use-user-data'
 import Colors from '@/types/enums/colors'
 
 export default function LoggedCard() {

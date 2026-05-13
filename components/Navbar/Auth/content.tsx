@@ -4,7 +4,7 @@ import { Button } from '@ui/button'
 import { CircleUserRound } from 'lucide-react'
 import Link from 'next/link'
 
-import useUserData from '@/hooks/api/use-user-data'
+import useUserData from '@/hooks/use-user-data'
 import Colors from '@/types/enums/colors'
 
 export default function AuthContent() {

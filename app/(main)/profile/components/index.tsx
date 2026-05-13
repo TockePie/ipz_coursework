@@ -6,7 +6,7 @@ import { Button } from '@ui/button'
 import Cookies from 'js-cookie'
 
 import Spinner from '@/components/Spinner'
-import useUserData from '@/hooks/api/use-user-data'
+import useUserData from '@/hooks/use-user-data'
 import Colors from '@/types/enums/colors'
 
 import { profileUpdateAction } from './actions'

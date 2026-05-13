@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@ui/button'
 
 import { useReservation } from '@/hooks/api/use-reservation'
-import useUserData from '@/hooks/api/use-user-data'
+import useUserData from '@/hooks/use-user-data'
 import { FormValues } from '@/types/form-values'
 
 import ChooseTable from './ChooseTable'

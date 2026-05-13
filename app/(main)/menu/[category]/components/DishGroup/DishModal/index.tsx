@@ -16,7 +16,7 @@ interface Props {
   isOpen: boolean
 }
 
-const DishModal = ({ item, image, isOpen }: Props) => {
+export default function DishModal({ item, image, isOpen }: Props) {
   const handleClose = () => {
     const params = new URLSearchParams(window.location.search)
     params.delete('dish')
@@ -70,5 +70,3 @@ const DishModal = ({ item, image, isOpen }: Props) => {
     </Dialog>
   )
 }
-
-export default DishModal

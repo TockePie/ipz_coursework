@@ -1,6 +1,6 @@
 import { Allergens } from './enums/allergens'
 
-interface Dish {
+export interface Dish {
   id: number
   name: string
   description: string
@@ -13,7 +13,7 @@ interface Dish {
   modifier_groups: ModifierGroup[]
 }
 
-interface Variants {
+export interface Variants {
   id: number
   size_label: 'S' | 'M' | 'L' | string
   weight_grams: number | null
@@ -23,7 +23,7 @@ interface Variants {
   options: ModifierOption[]
 }
 
-interface ModifierGroup {
+export interface ModifierGroup {
   id: number
   name: string
   description: string
@@ -31,17 +31,15 @@ interface ModifierGroup {
   selection_type: 'single' | 'multiple'
 }
 
-interface ModifierOption {
+export interface ModifierOption {
   id: number
   name: string
   price_modifier: number
   is_default: boolean
 }
 
-interface DishImage {
+export interface DishImage {
   data: (string | undefined)[]
   isLoading: boolean
   isError: boolean
 }
-
-export type { Dish, DishImage, ModifierGroup, ModifierOption, Variants }

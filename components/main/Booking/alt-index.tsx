@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query'
 import { Button } from '@ui/button'
 
 import { postReservation } from '@/api/reservation'
-import useUserData from '@/hooks/api/use-user-data'
+import useUserData from '@/hooks/use-user-data'
 import { FormValues } from '@/types/form-values'
 
 import ChooseTable from './ChooseTable'

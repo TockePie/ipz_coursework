@@ -8,9 +8,3 @@ export const api = axios.create({
   timeout,
   headers
 })
-
-export const imgApi = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_IMG_URL,
-  timeout,
-  headers
-})

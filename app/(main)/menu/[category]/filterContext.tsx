@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, use, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 import { Allergens } from '@/types/enums/allergens'
 
@@ -32,7 +32,7 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useFilters() {
-  const context = use(FilterContext)
+  const context = useContext(FilterContext)
   if (context === undefined) {
     throw new Error('useFilters must be used within a FilterProvider')
   }

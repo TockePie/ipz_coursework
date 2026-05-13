@@ -1,8 +1,8 @@
-import { ReservationType, Table } from '@/types/reservation'
+import { ReservationInput, Table } from '@/types/reservation'
 
 import { api } from './instance'
 
-export async function postReservation(reservationData: ReservationType) {
+export async function postReservation(reservationData: ReservationInput) {
   const { data } = await api.post('/reservations/', reservationData)
   return data
 }

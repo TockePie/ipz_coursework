@@ -1,20 +1,20 @@
 import z from 'zod'
 
 export const ReservationSchema = z.object({
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format'),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Невірний формат дати (YYYY-MM-DD)'),
   slot_start: z
     .string()
-    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format'),
-  table_id: z.number().int().nonnegative(),
-  guest_count: z.number().int().positive(),
-  user_id: z.number().int(),
-  phone_number: z
-    .string()
-    .regex(/^\+380\d{9}$/, 'Неправильний формат українського номера'),
-  name: z.string().min(2, 'Занадто коротке ім’я'),
-  comments: z.string().optional()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Невірний формат часу (HH:MM)'),
+  table_id: z.number().int().describe('ID столика'),
+  guest_count: z.number().int().positive('Кількість гостей має бути більше 0'),
+  user_id: z.number().int().optional().nullable(),
+  phone_number: z.string().optional().nullable(),
+  name: z.string().optional().nullable(),
+  comments: z.string().optional().nullable()
 })
-export type ReservationType = z.infer<typeof ReservationSchema>
+export type ReservationInput = z.infer<typeof ReservationSchema>
 
 export interface Table {
   id: number

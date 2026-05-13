@@ -52,12 +52,17 @@ export default function Booking() {
       return
     }
 
+    if (!formData.date || !formData.time || !formData.table) {
+      alert("Будь ласка, заповніть усі обов'язкові поля")
+      return
+    }
+
     const payload = {
-      date: formData.date?.toISOString().split('T')[0],
+      date: formData.date.toISOString().split('T')[0],
       slot_start: formData.time,
       table_id: Number(formData.table),
       guest_count: formData.people,
-      user_id: userInfo?.id,
+      user_id: userInfo ? Number(userInfo.id) : null,
       phone_number: userInfo ? userInfo.phone_number : guestInfo.phone,
       name: userInfo
         ? `${userInfo.first_name} ${userInfo.last_name}`

@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, useForm, useWatch } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
 import { Button } from '@ui/button'
 
-import { useReservation } from '@/hooks/api/use-reservation'
+import { postReservation } from '@/api/reservation'
 import useUserData from '@/hooks/use-user-data'
 import { FormValues } from '@/types/form-values'
 
@@ -14,32 +15,39 @@ import GuestModal from './GuestModal'
 import PickDay from './PickDay'
 import PickTime from './PickTime'
 
-//TODO: yarn remove react-hook-form @hookform/resolvers after removal
-const Booking = () => {
+export default function Booking() {
   const [openModal, setOpenModal] = useState(false)
   const [openGuestModal, setOpenGuestModal] = useState(false)
   const [guestInfo, setGuestInfo] = useState({ name: '', email: '', phone: '' })
-  const methods = useForm<FormValues>({
-    defaultValues: {
-      date: undefined,
-      time: undefined,
-      people: 1,
-      table: undefined
-    }
-  })
-  const { handleSubmit, watch } = methods
-  const { createReservation, isSuccess, isError, error } = useReservation()
+
   const { userInfo } = useUserData()
 
-  const date = watch('date')
-  const time = watch('time')
-  const people = watch('people')
-  const table = watch('table')
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      people: 1
+    }
+  })
+  const { handleSubmit, control } = methods
+  const [date, time, people, table] = useWatch({
+    control,
+    name: ['date', 'time', 'people', 'table']
+  })
+
+  const { mutate: createReservation } = useMutation({
+    mutationFn: postReservation,
+    onSuccess: () => {
+      alert('Резервація успішна!')
+      setOpenModal(false)
+    },
+    onError: (error) => {
+      alert(
+        `Помилка при створенні резервації. Спробуйте ще раз. Текст помилки: ${error?.message}`
+      )
+    }
+  })
 
   const onSubmit = async (formData: FormValues) => {
-    const hasGuestInfo = guestInfo.name && guestInfo.phone
-
-    if (!userInfo && !hasGuestInfo) {
+    if (!userInfo && (!guestInfo.name || !guestInfo.phone)) {
       setOpenGuestModal(true)
       return
     }
@@ -56,19 +64,7 @@ const Booking = () => {
         : guestInfo.name,
       comments: ''
     }
-
     createReservation(payload)
-
-    if (isSuccess) {
-      alert('Резервація успішна!')
-      setOpenModal(false)
-    }
-
-    if (isError) {
-      alert(
-        `Помилка при створенні резервації. Спробуйте ще раз. Текст помилки: ${error?.message}`
-      )
-    }
   }
 
   return (
@@ -109,12 +105,10 @@ const Booking = () => {
           onSubmit={(data) => {
             setGuestInfo({ ...data, email: '' })
             setOpenGuestModal(false)
-            handleSubmit(onSubmit)()
+            setTimeout(() => handleSubmit(onSubmit)(), 0)
           }}
         />
       </form>
     </FormProvider>
   )
 }
-
-export default Booking

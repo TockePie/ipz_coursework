@@ -27,7 +27,7 @@ export async function getUser(user_id: string): Promise<User> {
   return data
 }
 
-export async function profileUpdate(props: ProfileUpdate) {
-  const { data } = await api.post('/users/profileUpdateclassic', props)
+export async function profileUpdate(props: ProfileUpdate): Promise<string> {
+  const { data } = await api.post('/users/passwordresetclassic', props)
   return data
 }

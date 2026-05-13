@@ -6,6 +6,7 @@ import PagesLink from '@/components/main/PagesLink'
 
 import Categories from './menu/[category]/components/Categories'
 import DishGroup from './menu/[category]/components/DishGroup'
+import { FilterProvider } from './menu/[category]/filterContext'
 
 export default function Home() {
   return (
@@ -18,8 +19,10 @@ export default function Home() {
         </div>
         <div className="hidden flex-col gap-4 lg:flex">
           <div className="mb-5 flex w-full flex-col gap-y-4">
-            <Categories />
-            <DishGroup currentCategory="main" />
+            <FilterProvider>
+              <Categories />
+              <DishGroup currentCategory="main" />
+            </FilterProvider>
           </div>
         </div>
       </BlockSection>

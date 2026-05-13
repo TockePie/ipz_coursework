@@ -1,13 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { useState } from 'react'
+import { FormProvider, useForm, useWatch } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
 import { Button } from '@ui/button'
 
-import useAuth from '@/hooks/api/use-auth'
-import { useReservation } from '@/hooks/api/use-reservation'
-import useUserData from '@/hooks/api/use-user-data'
-import useUserStore from '@/hooks/store/use-user-store'
+import { postReservation } from '@/api/reservation'
+import useUserData from '@/hooks/use-user-data'
 import { FormValues } from '@/types/form-values'
 
 import ChooseTable from './ChooseTable'
@@ -16,69 +15,61 @@ import GuestModal from './GuestModal'
 import PickDay from './PickDay'
 import PickTime from './PickTime'
 
-const Booking = () => {
+export default function Booking() {
   const [openModal, setOpenModal] = useState(false)
   const [openGuestModal, setOpenGuestModal] = useState(false)
   const [guestInfo, setGuestInfo] = useState({ name: '', email: '', phone: '' })
+
+  const { userInfo } = useUserData()
+
   const methods = useForm<FormValues>({
     defaultValues: {
-      date: undefined,
-      time: undefined,
-      people: 1,
-      table: undefined
+      people: 1
     }
   })
-  const { handleSubmit, watch } = methods
-  const { isAuthenticated } = useAuth()
-  const { createReservation, isSuccess, isError, error } = useReservation()
-  const { userInfo } = useUserStore()
-  useUserData()
+  const { handleSubmit, control } = methods
+  const [date, time, people, table] = useWatch({
+    control,
+    name: ['date', 'time', 'people', 'table']
+  })
 
-  const date = watch('date')
-  const time = watch('time')
-  const people = watch('people')
-  const table = watch('table')
-
-  const onSubmit = async (formData: FormValues) => {
-    const isAuth = isAuthenticated()
-
-    if (!isAuth && (!guestInfo.name || !guestInfo.phone)) {
-      setOpenGuestModal(true)
-      return
-    }
-
-    if (isAuth && !userInfo) {
-      alert(
-        'Не вдалося отримати дані користувача. Спробуйте вийти з системи та увійти знову.'
-      )
-      return
-    }
-
-    const payload = {
-      date: formData.date?.toISOString().split('T')[0],
-      slot_start: formData.time,
-      table_id: Number(formData.table),
-      guest_count: formData.people,
-      user_id: isAuth ? userInfo!.id : undefined,
-      phone_number: isAuth ? userInfo!.phone_number : guestInfo.phone,
-      name: isAuth
-        ? `${userInfo!.first_name} ${userInfo!.last_name}`
-        : guestInfo.name,
-      comments: ''
-    }
-
-    createReservation(payload)
-
-    if (isSuccess) {
+  const { mutate: createReservation } = useMutation({
+    mutationFn: postReservation,
+    onSuccess: () => {
       alert('Резервація успішна!')
       setOpenModal(false)
-    }
-
-    if (isError) {
+    },
+    onError: (error) => {
       alert(
         `Помилка при створенні резервації. Спробуйте ще раз. Текст помилки: ${error?.message}`
       )
     }
+  })
+
+  const onSubmit = async (formData: FormValues) => {
+    if (!userInfo && (!guestInfo.name || !guestInfo.phone)) {
+      setOpenGuestModal(true)
+      return
+    }
+
+    if (!formData.date || !formData.time || !formData.table) {
+      alert("Будь ласка, заповніть усі обов'язкові поля")
+      return
+    }
+
+    const payload = {
+      date: formData.date.toISOString().split('T')[0],
+      slot_start: formData.time,
+      table_id: Number(formData.table),
+      guest_count: formData.people,
+      user_id: userInfo ? Number(userInfo.id) : null,
+      phone_number: userInfo ? userInfo.phone_number : guestInfo.phone,
+      name: userInfo
+        ? `${userInfo.first_name} ${userInfo.last_name}`
+        : guestInfo.name,
+      comments: ''
+    }
+    createReservation(payload)
   }
 
   return (
@@ -119,12 +110,10 @@ const Booking = () => {
           onSubmit={(data) => {
             setGuestInfo({ ...data, email: '' })
             setOpenGuestModal(false)
-            handleSubmit(onSubmit)()
+            setTimeout(() => handleSubmit(onSubmit)(), 0)
           }}
         />
       </form>
     </FormProvider>
   )
 }
-
-export default Booking

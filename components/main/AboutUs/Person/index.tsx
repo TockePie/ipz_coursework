@@ -1,6 +1,4 @@
-import React from 'react'
-
-import { cn } from '@/lib/utils'
+import { cx } from 'class-variance-authority'
 
 import BlockQuote from './BlockQuote'
 
@@ -38,13 +36,13 @@ const Person = ({
         </div>
 
         <BlockQuote
-          className={cn('max-lg:hidden', className)}
+          className={cx('max-lg:hidden', className)}
           content={quote}
         />
       </div>
     </div>
 
-    <BlockQuote className={cn('lg:hidden', className)} content={quote} />
+    <BlockQuote className={cx('lg:hidden', className)} content={quote} />
   </div>
 )
 

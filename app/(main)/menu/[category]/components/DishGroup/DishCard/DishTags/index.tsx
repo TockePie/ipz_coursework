@@ -1,23 +1,21 @@
-import React from 'react'
+import { cx } from 'class-variance-authority'
 
-import { cn } from '@/lib/utils'
 import { Allergens, AllergensIcons } from '@/types/enums/allergens'
 
 interface Props {
-  tags: string[]
+  tags: Allergens[]
   className?: string
 }
 
-const DishTags = (props: Props) => {
-  const { tags, className } = props
+export default function DishTags({ tags, className }: Props) {
   const filteredAllergens = tags
-    .filter((tag) => Object.values(Allergens).includes(tag as Allergens))
+    .filter((tag) => Object.values(Allergens).includes(tag))
     .sort()
 
   return (
-    <div className={cn('absolute top-2.5 right-2.5 flex gap-2', className)}>
+    <div className={cx('absolute top-2.5 right-2.5 flex gap-2', className)}>
       {filteredAllergens.map((tag) => {
-        const Icon = AllergensIcons[tag as Allergens]
+        const Icon = AllergensIcons[tag]
 
         return (
           <div key={tag} className="flex h-5 w-5 items-center justify-center">
@@ -28,5 +26,3 @@ const DishTags = (props: Props) => {
     </div>
   )
 }
-
-export default DishTags

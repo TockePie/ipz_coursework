@@ -1,18 +1,16 @@
-import React, { ReactNode } from 'react'
-
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 
-const Layout = ({
+export default function Layout({
   children
 }: Readonly<{
-  children: ReactNode
-}>) => (
-  <>
-    <Navbar />
-    {children}
-    <Footer />
-  </>
-)
-
-export default Layout
+  children: React.ReactNode
+}>) {
+  return (
+    <>
+      <Navbar />
+      {children}
+      <Footer />
+    </>
+  )
+}

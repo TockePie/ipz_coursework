@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 
 interface Props {
   detailed_description: string
 }
 
-const Ingredients = (props: Props) => {
-  const { detailed_description } = props
+export default function Ingredients({ detailed_description }: Props) {
   if (!detailed_description) return null
 
   return (
@@ -32,5 +31,3 @@ const Ingredients = (props: Props) => {
     </div>
   )
 }
-
-export default Ingredients

@@ -1,7 +1,6 @@
-import React from 'react'
+import { cx } from 'class-variance-authority'
 import { LoaderCircle } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
 import Colors from '@/types/enums/colors'
 
 interface Props {
@@ -10,12 +9,16 @@ interface Props {
   size?: number
 }
 
-const Spinner = ({ className, color = Colors.CORNSILK, size = 32 }: Props) => (
-  <LoaderCircle
-    size={size}
-    className={cn('animate-spin', className)}
-    color={color}
-  />
-)
-
-export default Spinner
+export default function Spinner({
+  className,
+  color = Colors.CORNSILK,
+  size = 32
+}: Props) {
+  return (
+    <LoaderCircle
+      size={size}
+      className={cx('animate-spin', className)}
+      color={color}
+    />
+  )
+}

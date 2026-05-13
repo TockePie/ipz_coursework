@@ -1,7 +1,6 @@
-import React from 'react'
 import { ControllerRenderProps } from 'react-hook-form'
 import { Button } from '@ui/button'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 
 import { FormValues } from '@/types/form-values'
 
@@ -20,7 +19,7 @@ const RenderComp = ({ field }: Props) => (
         key={index}
         type="button"
         onClick={() => field.onChange(time.timeFrom)}
-        className={clsx(
+        className={cx(
           'font-unbounded text-brown bg-mistyrose text-md active:bg-mistyrose/80 hover:bg-mistyrose/90 px-5 py-7 font-light',
           field.value === time.timeFrom && styles.checked
         )}

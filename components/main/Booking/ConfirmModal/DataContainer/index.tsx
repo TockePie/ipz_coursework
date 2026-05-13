@@ -1,15 +1,18 @@
-import React from 'react'
 import { useFormContext } from 'react-hook-form'
+import { useQuery } from '@tanstack/react-query'
 
-import { useTable } from '@/hooks/api/use-reservation'
+import { getTables } from '@/api/reservation'
 import { FormValues } from '@/types/form-values'
 
 const DataContainer = () => {
   const { watch } = useFormContext<FormValues>()
-  const table = useTable()
-  const tableNumber = table.data?.find(
-    (item) => item.id === Number(watch('table'))
-  )
+  const { data: table } = useQuery({
+    queryKey: ['tables'],
+    queryFn: getTables,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
+  const tableNumber = table?.find((item) => item.id === Number(watch('table')))
 
   const data = {
     date: watch('date'),

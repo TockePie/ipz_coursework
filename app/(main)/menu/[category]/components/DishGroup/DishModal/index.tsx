@@ -1,8 +1,6 @@
 'use client'
 
-import React from 'react'
 import { Dialog, DialogContent, DialogTitle } from '@ui/dialog'
-import { useSearchParams } from 'next/navigation'
 
 import { Dish } from '@/types/dish'
 
@@ -15,21 +13,14 @@ import NoodleSizes from './NoodleSizes'
 interface Props {
   item: Dish
   image: string | undefined
-  isLoading: boolean
+  isOpen: boolean
 }
 
-const DishModal = (props: Props) => {
-  const { item, image, isLoading } = props
-
-  const searchParams = useSearchParams()
-
-  const dishId = searchParams.get('dish')
-  const isOpen = dishId === item.id.toString()
-
+export default function DishModal({ item, image, isOpen }: Props) {
   const handleClose = () => {
-    const url = new URL(window.location.href)
-    url.searchParams.delete('dish')
-    window.history.pushState({}, '', url)
+    const params = new URLSearchParams(window.location.search)
+    params.delete('dish')
+    window.history.replaceState(null, '', `?${params.toString()}`)
   }
 
   return (
@@ -40,14 +31,14 @@ const DishModal = (props: Props) => {
         <DishImage
           image={image}
           name={item.name}
-          isLoading={isLoading}
+          isLoading={false}
           size={300}
           className="max-h-72 max-w-72 max-md:hidden"
         />
         <DishImage
           image={image}
           name={item.name}
-          isLoading={isLoading}
+          isLoading={false}
           size={200}
           className="max-h-72 max-w-72 md:hidden"
         />
@@ -79,5 +70,3 @@ const DishModal = (props: Props) => {
     </Dialog>
   )
 }
-
-export default DishModal

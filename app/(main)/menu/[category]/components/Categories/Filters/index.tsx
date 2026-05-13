@@ -1,32 +1,50 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@ui/button'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger
 } from '@ui/dialog'
 
-import useFiltersStore from '@/hooks/store/use-filters-store'
 import { Allergens } from '@/types/enums/allergens'
+
+import { useFilters } from '../../../filterContext'
 
 import AllergensFilter from './AllergensFilters'
 import PriceRange from './PriceRange'
 
-const Filters = () => {
-  const { allergens, priceRange, setAllergens, setPriceRange } =
-    useFiltersStore()
-  const closeDialog = useRef<HTMLButtonElement>(null)
-  const [selectedAllergens, setSelectedAllergens] =
-    useState<Allergens[]>(allergens)
-  const [localPriceRange, setLocalPriceRange] = useState<number[]>(priceRange)
+export default function Filters() {
+  const { filters, setFilters } = useFilters()
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedAllergens, setSelectedAllergens] = useState<Allergens[]>(
+    filters.allergens
+  )
+  const [localPriceRange, setLocalPriceRange] = useState<number[]>(
+    filters.priceRange
+  )
+
+  const handleToggleAllergen = (allergen: Allergens) => {
+    setSelectedAllergens((prev) =>
+      prev.includes(allergen)
+        ? prev.filter((a) => a !== allergen)
+        : [...prev, allergen]
+    )
+  }
+
+  const handleApply = () => {
+    setFilters({
+      allergens: selectedAllergens,
+      priceRange: localPriceRange
+    })
+    setIsOpen(false)
+  }
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button color="pale-turquoise">Фільтри</Button>
       </DialogTrigger>
@@ -41,7 +59,7 @@ const Filters = () => {
         <div className="flex flex-col items-center gap-6">
           <AllergensFilter
             selected={selectedAllergens}
-            onChange={(value) => setSelectedAllergens(value)}
+            onToggle={handleToggleAllergen}
           />
 
           <PriceRange
@@ -49,23 +67,11 @@ const Filters = () => {
             onChange={(value) => setLocalPriceRange(value)}
           />
 
-          <Button
-            className="mt-2"
-            size="xl"
-            onClick={() => {
-              setAllergens(selectedAllergens)
-              setPriceRange(localPriceRange)
-              closeDialog.current?.click()
-            }}
-          >
+          <Button className="mt-2" size="xl" onClick={handleApply}>
             Застосувати
           </Button>
         </div>
       </DialogContent>
-
-      <DialogClose ref={closeDialog} />
     </Dialog>
   )
 }
-
-export default Filters

@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { cn } from '@/lib/utils'
+import { cx } from 'class-variance-authority'
 
 interface Props {
   className?: string
@@ -9,7 +8,7 @@ interface Props {
 
 const BlockQuote = ({ className, content }: Props) => (
   <div
-    className={cn(
+    className={cx(
       'bg-mistyrose relative max-w-md rounded-3xl p-4 py-5',
       className
     )}

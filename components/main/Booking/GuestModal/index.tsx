@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog'
 import { Button } from '@ui/button'
 import { Dialog, DialogContent, DialogHeader } from '@ui/dialog'
 import { Input } from '@ui/input'
 import Link from 'next/link'
-import validator from 'validator'
+import z from 'zod'
 
 interface Props {
   open: boolean
@@ -14,23 +14,33 @@ interface Props {
   onSubmit: (data: { name: string; phone: string }) => void
 }
 
+const guestSchema = z.object({
+  name: z.string().min(2, 'Будь ласка, заповніть усі поля'),
+  phone: z
+    .string()
+    .regex(/^\+380\d{9}$/, 'Неправильний формат українського номера')
+})
+
 const GuestModal = (props: Props) => {
   const { open, onClose, onSubmit } = props
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
 
   const handleSubmit = () => {
-    if (!name || !phone) {
-      alert('Будь ласка, заповніть усі поля')
+    const result = guestSchema.safeParse({ name, phone })
+
+    if (!result.success) {
+      const formattedErrors = result.error.flatten()
+
+      const firstErrorMessage =
+        formattedErrors.fieldErrors.name?.[0] ||
+        formattedErrors.fieldErrors.phone?.[0]
+
+      alert(firstErrorMessage || 'Помилка валідації')
       return
     }
 
-    if (phone && !validator.isMobilePhone(phone, 'uk-UA')) {
-      alert('Неправильний номер телефону')
-      return
-    }
-
-    onSubmit({ name, phone })
+    onSubmit(result.data)
   }
 
   return (

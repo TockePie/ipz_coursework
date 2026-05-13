@@ -1,11 +1,9 @@
-import React from 'react'
 import Link from 'next/link'
 
 import { Dish } from '@/types/dish'
 
 import DishImage from './DishImage'
 import DishTags from './DishTags'
-import VariantList from './VariantList'
 
 interface Props {
   item: Dish
@@ -13,9 +11,7 @@ interface Props {
   isLoading: boolean
 }
 
-const DishCard = (props: Props) => {
-  const { item, image, isLoading } = props
-
+const DishCard = ({ item, image, isLoading }: Props) => {
   return (
     <Link
       href={`?dish=${item.id}`}
@@ -40,7 +36,16 @@ const DishCard = (props: Props) => {
         <p className="font-unbounded text-brown text-xs">{item.description}</p>
 
         <div className="flex w-full items-end justify-between">
-          <VariantList item={item} />
+          <div>
+            {item.variants.map((variant, index) => (
+              <p
+                key={index}
+                className="font-unbounded text-brown text-sm font-light"
+              >
+                {variant.size_label}
+              </p>
+            ))}
+          </div>
 
           <p className="text-strong-cyan font-unbounded text-sm font-semibold">
             {

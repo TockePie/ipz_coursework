@@ -1,14 +1,14 @@
 'use client'
 
-import React from 'react'
 import {
   ControllerRenderProps,
   useFormContext,
   useWatch
 } from 'react-hook-form'
+import { useQuery } from '@tanstack/react-query'
 import { ScrollArea, ScrollBar } from '@ui/scroll-area'
 
-import { useTable } from '@/hooks/api/use-reservation'
+import { getTables } from '@/api/reservation'
 import { FormValues } from '@/types/form-values'
 
 import TableCard from './TableCard'
@@ -25,17 +25,19 @@ interface Props {
   field: ControllerRenderProps<FormValues, 'table'>
 }
 
-const PickTable = (props: Props) => {
-  const { field } = props
-
+const PickTable = ({ field }: Props) => {
   const { control } = useFormContext<FormValues>()
   const people = useWatch({
     control,
     name: 'people'
   })
-  const query = useTable()
+  const { data } = useQuery({
+    queryKey: ['tables'],
+    queryFn: getTables,
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
 
-  const filteredTables = query.data?.filter((table) => {
+  const filteredTables = data?.filter((table) => {
     if (table.is_available) {
       return (table.capacity ?? 0) >= people
     }

@@ -1,21 +1,20 @@
 'use client'
 
-import React from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import Cookies from 'js-cookie'
 import { CircleUserRound, LogOut, Pencil } from 'lucide-react'
 import Link from 'next/link'
 
-import useAuth from '@/hooks/api/use-auth'
-import useUserData from '@/hooks/api/use-user-data'
-import useUserStore from '@/hooks/store/use-user-store'
+import useUserData from '@/hooks/use-user-data'
 import Colors from '@/types/enums/colors'
 
-const LoggedCard = () => {
-  const { logout } = useAuth()
-  const { userInfo } = useUserStore((state) => state)
-  useUserData()
+export default function LoggedCard() {
+  const queryClient = useQueryClient()
+  const { userInfo } = useUserData()
 
-  const handleLogOut = async () => {
-    await logout()
+  const handleLogOut = () => {
+    Cookies.remove('user_id')
+    queryClient.clear()
     window.location.reload()
   }
 
@@ -53,5 +52,3 @@ const LoggedCard = () => {
     </div>
   )
 }
-
-export default LoggedCard

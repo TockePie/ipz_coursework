@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Card,
   CardContent,
@@ -6,10 +5,8 @@ import {
   CardHeader,
   CardTitle
 } from '@ui/card'
-import clsx from 'clsx'
+import { cx } from 'class-variance-authority'
 import Image from 'next/image'
-
-import { cn } from '@/lib/utils'
 
 interface Props {
   number: number
@@ -39,7 +36,7 @@ const TableCard = ({
   image
 }: Props) => (
   <Card
-    className={cn(
+    className={cx(
       'bg-mistyrose border-brown flex h-full w-full max-w-xl cursor-pointer flex-col justify-between rounded-lg border shadow-md transition-all duration-200 hover:shadow-lg',
       className
     )}
@@ -51,7 +48,7 @@ const TableCard = ({
           Столик №{number}
         </span>
         <span
-          className={clsx(
+          className={cx(
             'font-unbounded text-sm',
             is_available ? 'text-strong-cyan' : 'text-red-500'
           )}

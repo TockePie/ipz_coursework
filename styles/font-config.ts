@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono, Unbounded } from 'next/font/google'
 import localFont from 'next/font/local'
 
-const meila = localFont({
+export const meila = localFont({
   src: [
     {
       path: './fonts/MeilaDEMO-LineBold.woff',
@@ -27,19 +27,17 @@ const meila = localFont({
   variable: '--font-meila'
 })
 
-const unbounded = Unbounded({
+export const unbounded = Unbounded({
   variable: '--font-unbounded',
   subsets: ['latin', 'cyrillic']
 })
 
-const geistSans = Geist({
+export const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin']
 })
 
-const geistMono = Geist_Mono({
+export const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin']
 })
-
-export { geistMono, geistSans, meila, unbounded }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 
@@ -17,7 +17,7 @@ interface Props {
   currentCategory: keyof typeof DishCategory
 }
 
-export default function DishGroup({ currentCategory }: Props) {
+function DishGroupContent({ currentCategory }: Props) {
   const searchParams = useSearchParams()
   const selectedDishId = searchParams.get('dish')
 
@@ -77,5 +77,13 @@ export default function DishGroup({ currentCategory }: Props) {
         />
       )}
     </div>
+  )
+}
+
+export default function DishGroup(props: Props) {
+  return (
+    <Suspense fallback={<DishSkeleton />}>
+      <DishGroupContent {...props} />
+    </Suspense>
   )
 }

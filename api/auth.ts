@@ -11,23 +11,28 @@ import { api } from './instance'
 export async function login(
   credentials: LoginCredentials
 ): Promise<LoginResponse> {
-  const { data } = await api.post('/users/login', credentials)
-  return data
+  return await api.post<LoginResponse, LoginCredentials>(
+    '/users/login',
+    credentials
+  )
 }
 
 export async function register(
   credentials: RegisterCredentials
 ): Promise<User> {
-  const { data } = await api.post('/users/register', credentials)
-  return data
+  return await api.post<User, RegisterCredentials>(
+    '/users/register',
+    credentials
+  )
 }
 
 export async function getUser(user_id: string): Promise<User> {
-  const { data } = await api.get(`/users/${user_id}`)
-  return data
+  return await api.get<User>(`/users/${user_id}`)
 }
 
 export async function profileUpdate(props: ProfileUpdate): Promise<string> {
-  const { data } = await api.post('/users/passwordresetclassic', props)
-  return data
+  return await api.post<string, ProfileUpdate>(
+    '/users/passwordresetclassic',
+    props
+  )
 }

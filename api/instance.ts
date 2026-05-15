@@ -1,10 +1,44 @@
-import axios from 'axios'
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'
 
-const headers = { 'Content-Type': 'application/json' }
-const timeout = Number(process.env.NEXT_PUBLIC_AXIOS_REQUEST_TIMEOUT) ?? 10000
+export class ApiError extends Error {
+  constructor(
+    public status: number,
+    message: string
+  ) {
+    super(message)
+    this.name = 'ApiError'
+  }
+}
 
-export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-  timeout,
-  headers
-})
+async function apiRequest<T>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const url = `${BASE_URL}${endpoint}`
+
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+    ...options.headers
+  })
+
+  const response = await fetch(url, {
+    ...options,
+    headers
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}))
+    throw new Error(
+      errorData.message || `HTTP error! status: ${response.status}`
+    )
+  }
+
+  return response.json()
+}
+
+export const api = {
+  get: <T>(url: string, init?: RequestInit) =>
+    apiRequest<T>(url, { ...init, method: 'GET' }),
+  post: <T, K>(url: string, body: K, init?: RequestInit) =>
+    apiRequest<T>(url, { ...init, method: 'POST', body: JSON.stringify(body) })
+}

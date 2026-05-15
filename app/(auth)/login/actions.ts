@@ -1,9 +1,9 @@
 'use server'
 
-import { AxiosError } from 'axios'
 import { cookies } from 'next/headers'
 
 import { login } from '@/api/auth'
+import { ApiError } from '@/api/instance'
 import { ActionState } from '@/types/action-state'
 import { LoginCredentials, LoginSchema } from '@/types/auth'
 
@@ -33,7 +33,7 @@ export async function loginAction(
 
     return { success: true, zodErrors: null }
   } catch (error: unknown) {
-    if (error instanceof AxiosError) {
+    if (error instanceof ApiError) {
       return {
         success: false,
         zodErrors: null,

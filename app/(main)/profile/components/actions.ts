@@ -1,8 +1,7 @@
 'use server'
 
-import { AxiosError } from 'axios'
-
 import { profileUpdate } from '@/api/auth'
+import { ApiError } from '@/api/instance'
 import { ActionState } from '@/types/action-state'
 import { ProfileUpdate, ProfileUpdateSchema } from '@/types/auth'
 
@@ -33,8 +32,8 @@ export async function profileUpdateAction(
 
     return { success: true }
   } catch (error: unknown) {
-    if (error instanceof AxiosError) {
-      const status = error.response?.status
+    if (error instanceof ApiError) {
+      const status = error.status
 
       switch (status) {
         case 400: {
